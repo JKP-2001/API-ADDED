@@ -4,7 +4,7 @@ from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
 from django.template.defaulttags import csrf_token
 from django.views.generic import ListView, DetailView, CreateView, UpdateView, DeleteView
 from .models import Task
-from .serializer import TaskSerializer
+# from .serializer import TaskSerializer
 import io
 from rest_framework.parsers import JSONParser
 # from .serializer import TaskDSerializer
@@ -16,13 +16,16 @@ from rest_framework.mixins import ListModelMixin
 from rest_framework.mixins import RetrieveModelMixin
 from rest_framework.mixins import CreateModelMixin
 
+from django.contrib.auth.decorators import login_required
 from django.shortcuts import render
 from django.contrib.auth.mixins import LoginRequiredMixin,UserPassesTestMixin
 from django.views.generic import ListView,DetailView,CreateView,UpdateView,DeleteView
 from .models import Task
+from .models import BT
 from django.http import HttpResponse, JsonResponse
 from rest_framework.parsers import JSONParser
-from .serializer import TaskSerializer
+from .aserializer import TaskSerializer
+from .serializer import BTSerializer
 from rest_framework.response import Response
 from rest_framework import status, permissions
 from rest_framework.views import APIView
@@ -120,6 +123,7 @@ def TASKSEE(request, pk):
 
 
 class TaskListAPI(generics.ListAPIView):
+
     serializer_class = TaskSerializer
     permission_class=(permissions.IsAuthenticatedOrReadOnly,)
     queryset = Task.objects.all()
@@ -142,3 +146,32 @@ class TaskCreateAPI(generics.GenericAPIView, mixins.CreateModelMixin):
 
     def post(self, request):
         return self.create(request)
+
+
+class BTTaskListAPI(generics.ListAPIView):
+
+    serializer_class = BTSerializer
+    permission_class=(permissions.IsAuthenticatedOrReadOnly,)
+    queryset = BT.objects.all()
+    filter_backends = [SearchFilter, OrderingFilter]
+    search_fields = ('title','description','author__name')
+
+
+class BTTaskDetailAPI(generics.RetrieveUpdateDestroyAPIView):
+    serializer_class = BTSerializer
+    queryset = BT.objects.all()
+    permission_class=(permissions.IsAuthenticatedOrReadOnly,)
+
+
+
+class BTTaskCreateAPI(generics.GenericAPIView, mixins.CreateModelMixin):
+    serializer_class = BTSerializer
+    queryset = BT.objects.all()
+    permission_class=(permissions.IsAuthenticatedOrReadOnly,)
+
+
+    def post(self, request):
+        return self.create(request)
+
+def task(request):
+    return render(request,'tasks/TaskView.html')

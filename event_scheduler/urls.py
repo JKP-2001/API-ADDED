@@ -32,4 +32,9 @@ urlpatterns = [
     path('API/', views.TaskListAPI.as_view(), name='tasks-list'),
     path('API/<int:pk>/', views.TaskDetailAPI.as_view(), name='tasks-detail'),
     path('API/new/', views.TaskCreateAPI.as_view(), name='tasks-create'),
+
+    path('BTAPI/', views.BTTaskListAPI.as_view(), name='tasks-list'),
+    path('BTAPI/<int:pk>/', views.BTTaskDetailAPI.as_view(), name='tasks-detail'),
+    path('BTAPI/new/', views.BTTaskCreateAPI.as_view(), name='tasks-create'),
+
 ]
