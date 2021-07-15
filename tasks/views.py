@@ -21,11 +21,11 @@ from django.shortcuts import render
 from django.contrib.auth.mixins import LoginRequiredMixin,UserPassesTestMixin
 from django.views.generic import ListView,DetailView,CreateView,UpdateView,DeleteView
 from .models import Task
-from .models import BT
+from .models import BT,CH,CL,CE,CSE,DES,ECE,EEE,MA,ME,PH
 from django.http import HttpResponse, JsonResponse
 from rest_framework.parsers import JSONParser
 from .aserializer import TaskSerializer
-from .serializer import BTSerializer
+from .serializer import BTSerializer,CHSerializer,CLSerializer,CESerializer,CSESerializer,DESSerializer,ECESerializer,EEESerializer,MASerializer,MESerializer,PHSerializer
 from rest_framework.response import Response
 from rest_framework import status, permissions
 from rest_framework.views import APIView
@@ -173,5 +173,245 @@ class BTTaskCreateAPI(generics.GenericAPIView, mixins.CreateModelMixin):
     def post(self, request):
         return self.create(request)
 
+
+
+class CHTaskListAPI(generics.ListAPIView):
+
+    serializer_class = CHSerializer
+    permission_class=(permissions.IsAuthenticatedOrReadOnly,)
+    queryset = CH.objects.all()
+    filter_backends = [SearchFilter, OrderingFilter]
+    search_fields = ('title','description','author__name')
+
+
+class CHTaskDetailAPI(generics.RetrieveUpdateDestroyAPIView):
+    serializer_class = CHSerializer
+    queryset = CH.objects.all()
+    permission_class=(permissions.IsAuthenticatedOrReadOnly,)
+
+
+
+class CHTaskCreateAPI(generics.GenericAPIView, mixins.CreateModelMixin):
+    serializer_class = CHSerializer
+    queryset = CH.objects.all()
+    permission_class=(permissions.IsAuthenticatedOrReadOnly,)
+
+
+    def post(self, request):
+        return self.create(request)
+
+
+class CLTaskListAPI(generics.ListAPIView):
+    serializer_class = CLSerializer
+    permission_class = (permissions.IsAuthenticatedOrReadOnly,)
+    queryset = CL.objects.all()
+    filter_backends = [SearchFilter, OrderingFilter]
+    search_fields = ('title', 'description', 'author__name')
+
+
+class CLTaskDetailAPI(generics.RetrieveUpdateDestroyAPIView):
+    serializer_class = CLSerializer
+    queryset = CL.objects.all()
+    permission_class = (permissions.IsAuthenticatedOrReadOnly,)
+
+
+class CLTaskCreateAPI(generics.GenericAPIView, mixins.CreateModelMixin):
+    serializer_class = CLSerializer
+    queryset = CL.objects.all()
+    permission_class = (permissions.IsAuthenticatedOrReadOnly,)
+
+    def post(self, request):
+        return self.create(request)
+
+
+class CETaskListAPI(generics.ListAPIView):
+    serializer_class = CESerializer
+    permission_class = (permissions.IsAuthenticatedOrReadOnly,)
+    queryset = CE.objects.all()
+    filter_backends = [SearchFilter, OrderingFilter]
+    search_fields = ('title', 'description', 'author__name')
+
+
+class CETaskDetailAPI(generics.RetrieveUpdateDestroyAPIView):
+    serializer_class = CESerializer
+    queryset = CE.objects.all()
+    permission_class = (permissions.IsAuthenticatedOrReadOnly,)
+
+
+class CETaskCreateAPI(generics.GenericAPIView, mixins.CreateModelMixin):
+    serializer_class = CESerializer
+    queryset = CE.objects.all()
+    permission_class = (permissions.IsAuthenticatedOrReadOnly,)
+
+    def post(self, request):
+        return self.create(request)
+
+
+class CSETaskListAPI(generics.ListAPIView):
+    serializer_class = CSESerializer
+    permission_class = (permissions.IsAuthenticatedOrReadOnly,)
+    queryset = CSE.objects.all()
+    filter_backends = [SearchFilter, OrderingFilter]
+    search_fields = ('title', 'description', 'author__name')
+
+
+class CSETaskDetailAPI(generics.RetrieveUpdateDestroyAPIView):
+    serializer_class = CSESerializer
+    queryset = CSE.objects.all()
+    permission_class = (permissions.IsAuthenticatedOrReadOnly,)
+
+
+class CSETaskCreateAPI(generics.GenericAPIView, mixins.CreateModelMixin):
+    serializer_class = CSESerializer
+    queryset = CSE.objects.all()
+    permission_class = (permissions.IsAuthenticatedOrReadOnly,)
+
+    def post(self, request):
+        return self.create(request)
+
+
+class DESTaskListAPI(generics.ListAPIView):
+    serializer_class = DESSerializer
+    permission_class = (permissions.IsAuthenticatedOrReadOnly,)
+    queryset = DES.objects.all()
+    filter_backends = [SearchFilter, OrderingFilter]
+    search_fields = ('title', 'description', 'author__name')
+
+
+class DESTaskDetailAPI(generics.RetrieveUpdateDestroyAPIView):
+    serializer_class = DESSerializer
+    queryset = DES.objects.all()
+    permission_class = (permissions.IsAuthenticatedOrReadOnly,)
+
+
+class DESTaskCreateAPI(generics.GenericAPIView, mixins.CreateModelMixin):
+    serializer_class = DESSerializer
+    queryset = DES.objects.all()
+    permission_class = (permissions.IsAuthenticatedOrReadOnly,)
+
+    def post(self, request):
+        return self.create(request)
+
+
+class ECETaskListAPI(generics.ListAPIView):
+    serializer_class = ECESerializer
+    permission_class = (permissions.IsAuthenticatedOrReadOnly,)
+    queryset = ECE.objects.all()
+    filter_backends = [SearchFilter, OrderingFilter]
+    search_fields = ('title', 'description', 'author__name')
+
+
+class ECETaskDetailAPI(generics.RetrieveUpdateDestroyAPIView):
+    serializer_class = ECESerializer
+    queryset = ECE.objects.all()
+    permission_class = (permissions.IsAuthenticatedOrReadOnly,)
+
+
+class ECETaskCreateAPI(generics.GenericAPIView, mixins.CreateModelMixin):
+    serializer_class = ECESerializer
+    queryset = ECE.objects.all()
+    permission_class = (permissions.IsAuthenticatedOrReadOnly,)
+
+    def post(self, request):
+        return self.create(request)
+
+
+class EEETaskListAPI(generics.ListAPIView):
+    serializer_class = EEESerializer
+    permission_class = (permissions.IsAuthenticatedOrReadOnly,)
+    queryset = EEE.objects.all()
+    filter_backends = [SearchFilter, OrderingFilter]
+    search_fields = ('title', 'description', 'author__name')
+
+
+class EEETaskDetailAPI(generics.RetrieveUpdateDestroyAPIView):
+    serializer_class = EEESerializer
+    queryset = EEE.objects.all()
+    permission_class = (permissions.IsAuthenticatedOrReadOnly,)
+
+
+class EEETaskCreateAPI(generics.GenericAPIView, mixins.CreateModelMixin):
+    serializer_class = EEESerializer
+    queryset = EEE.objects.all()
+    permission_class = (permissions.IsAuthenticatedOrReadOnly,)
+
+    def post(self, request):
+        return self.create(request)
+
+
+class MATaskListAPI(generics.ListAPIView):
+    serializer_class = MASerializer
+    permission_class = (permissions.IsAuthenticatedOrReadOnly,)
+    queryset = MA.objects.all()
+    filter_backends = [SearchFilter, OrderingFilter]
+    search_fields = ('title', 'description', 'author__name')
+
+
+class MATaskDetailAPI(generics.RetrieveUpdateDestroyAPIView):
+    serializer_class = MASerializer
+    queryset = MA.objects.all()
+    permission_class = (permissions.IsAuthenticatedOrReadOnly,)
+
+
+class MATaskCreateAPI(generics.GenericAPIView, mixins.CreateModelMixin):
+    serializer_class = MASerializer
+    queryset = MA.objects.all()
+    permission_class = (permissions.IsAuthenticatedOrReadOnly,)
+
+    def post(self, request):
+        return self.create(request)
+
+
+class METaskListAPI(generics.ListAPIView):
+    serializer_class = MESerializer
+    permission_class = (permissions.IsAuthenticatedOrReadOnly,)
+    queryset = ME.objects.all()
+    filter_backends = [SearchFilter, OrderingFilter]
+    search_fields = ('title', 'description', 'author__name')
+
+
+class METaskDetailAPI(generics.RetrieveUpdateDestroyAPIView):
+    serializer_class = MESerializer
+    queryset = ME.objects.all()
+    permission_class = (permissions.IsAuthenticatedOrReadOnly,)
+
+
+class METaskCreateAPI(generics.GenericAPIView, mixins.CreateModelMixin):
+    serializer_class = MESerializer
+    queryset = ME.objects.all()
+    permission_class = (permissions.IsAuthenticatedOrReadOnly,)
+
+    def post(self, request):
+        return self.create(request)
+
+
+class PHTaskListAPI(generics.ListAPIView):
+    serializer_class = PHSerializer
+    permission_class = (permissions.IsAuthenticatedOrReadOnly,)
+    queryset = PH.objects.all()
+    filter_backends = [SearchFilter, OrderingFilter]
+    search_fields = ('title', 'description', 'author__name')
+
+
+class PHTaskDetailAPI(generics.RetrieveUpdateDestroyAPIView):
+    serializer_class = PHSerializer
+    queryset = PH.objects.all()
+    permission_class = (permissions.IsAuthenticatedOrReadOnly,)
+
+
+class PHTaskCreateAPI(generics.GenericAPIView, mixins.CreateModelMixin):
+    serializer_class = PHSerializer
+    queryset = PH.objects.all()
+    permission_class = (permissions.IsAuthenticatedOrReadOnly,)
+
+    def post(self, request):
+        return self.create(request)
+
+
+
 def task(request):
     return render(request,'tasks/TaskView.html')
+
+def acad(request):
+    return render(request,'tasks/branchAC.html')
+

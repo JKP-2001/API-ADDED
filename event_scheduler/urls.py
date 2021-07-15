@@ -37,4 +37,44 @@ urlpatterns = [
     path('BTAPI/<int:pk>/', views.BTTaskDetailAPI.as_view(), name='tasks-detail'),
     path('BTAPI/new/', views.BTTaskCreateAPI.as_view(), name='tasks-create'),
 
+    path('CHAPI/', views.CHTaskListAPI.as_view(), name='tasks-list'),
+    path('CHAPI/<int:pk>/', views.CHTaskDetailAPI.as_view(), name='tasks-detail'),
+    path('CHAPI/new/', views.CHTaskCreateAPI.as_view(), name='tasks-create'),
+
+    path('CLAPI/', views.CLTaskListAPI.as_view(), name='tasks-list'),
+    path('CLAPI/<int:pk>/', views.CLTaskDetailAPI.as_view(), name='tasks-detail'),
+    path('CLAPI/new/', views.CLTaskCreateAPI.as_view(), name='tasks-create'),
+
+    path('CEAPI/', views.CETaskListAPI.as_view(), name='tasks-list'),
+    path('CEAPI/<int:pk>/', views.CETaskDetailAPI.as_view(), name='tasks-detail'),
+    path('CEAPI/new/', views.CETaskCreateAPI.as_view(), name='tasks-create'),
+
+    path('CSEAPI/', views.CSETaskListAPI.as_view(), name='tasks-list'),
+    path('CSEAPI/<int:pk>/', views.CSETaskDetailAPI.as_view(), name='tasks-detail'),
+    path('CSEAPI/new/', views.CSETaskCreateAPI.as_view(), name='tasks-create'),
+
+    path('DESAPI/', views.DESTaskListAPI.as_view(), name='tasks-list'),
+    path('DESAPI/<int:pk>/', views.DESTaskDetailAPI.as_view(), name='tasks-detail'),
+    path('DESAPI/new/', views.DESTaskCreateAPI.as_view(), name='tasks-create'),
+
+    path('ECEAPI/', views.ECETaskListAPI.as_view(), name='tasks-list'),
+    path('ECEAPI/<int:pk>/', views.ECETaskDetailAPI.as_view(), name='tasks-detail'),
+    path('ECEAPI/new/', views.ECETaskCreateAPI.as_view(), name='tasks-create'),
+
+    path('EEEAPI/', views.EEETaskListAPI.as_view(), name='tasks-list'),
+    path('EEEAPI/<int:pk>/', views.EEETaskDetailAPI.as_view(), name='tasks-detail'),
+    path('EEEPI/new/', views.EEETaskCreateAPI.as_view(), name='tasks-create'),
+
+    path('MAAPI/', views.MATaskListAPI.as_view(), name='tasks-list'),
+    path('MAAPI/<int:pk>/', views.MATaskDetailAPI.as_view(), name='tasks-detail'),
+    path('MAAPI/new/', views.MATaskCreateAPI.as_view(), name='tasks-create'),
+
+    path('MEAPI/', views.METaskListAPI.as_view(), name='tasks-list'),
+    path('MEAPI/<int:pk>/', views.METaskDetailAPI.as_view(), name='tasks-detail'),
+    path('MEAPI/new/', views.METaskCreateAPI.as_view(), name='tasks-create'),
+
+    path('PHAPI/', views.PHTaskListAPI.as_view(), name='tasks-list'),
+    path('PHAPI/<int:pk>/', views.PHTaskDetailAPI.as_view(), name='tasks-detail'),
+    path('PHAPI/new/', views.PHTaskCreateAPI.as_view(), name='tasks-create'),
+
 ]
