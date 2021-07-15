@@ -29,7 +29,7 @@ urlpatterns = [
     path('accounts/', include('allauth.urls')),
     path('alltask/<int:pk>/',views.TASKSEE),
     # path("createtask/",views.CREATETASK),
-    path('listtask/',views.TaskList.as_view(),name='TaskList'),
-    path('gettask/<int:pk>/',views.GETTASK.as_view(),name='GETTASK'),
-    path('createtask/',views.CreateTask.as_view(),name='Create'),
+    path('API/', views.TaskListAPI.as_view(), name='tasks-list'),
+    path('API/<int:pk>/', views.TaskDetailAPI.as_view(), name='tasks-detail'),
+    path('API/new/', views.TaskCreateAPI.as_view(), name='tasks-create'),
 ]

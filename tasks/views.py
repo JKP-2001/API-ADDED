@@ -16,6 +16,21 @@ from rest_framework.mixins import ListModelMixin
 from rest_framework.mixins import RetrieveModelMixin
 from rest_framework.mixins import CreateModelMixin
 
+from django.shortcuts import render
+from django.contrib.auth.mixins import LoginRequiredMixin,UserPassesTestMixin
+from django.views.generic import ListView,DetailView,CreateView,UpdateView,DeleteView
+from .models import Task
+from django.http import HttpResponse, JsonResponse
+from rest_framework.parsers import JSONParser
+from .serializer import TaskSerializer
+from rest_framework.response import Response
+from rest_framework import status, permissions
+from rest_framework.views import APIView
+from rest_framework import generics, mixins
+from django_filters.rest_framework import DjangoFilterBackend
+from rest_framework.filters import SearchFilter, OrderingFilter
+import django_filters.rest_framework
+
 # Create your views here.
 def index(request):
     param = {
@@ -81,44 +96,49 @@ def TASKSEE(request, pk):
 
 
 
-@csrf_exempt
-def CREATETASK(request):
-    if request.method == "POST":
-        json_data = request.body
-        stream = io.BytesIO(json_data)
+# @csrf_exempt
+# def CREATETASK(request):
+#     if request.method == "POST":
+#         json_data = request.body
+#         stream = io.BytesIO(json_data)
+#
+#         pythondata = JSONParser().parse(stream)
+#
+#         serializer = TaskDSerializer(data=pythondata)
+#
+#         if serializer.is_valid():
+#             serializer.save()
+#             res = {'msg': 'created'}
+#             json_data = JSONRenderer().render(res)
+#
+#             return HttpResponse(json_data, content_type='application/json')
+#     json_data = JSONRenderer().render(serializer.errors)
+#     return HttpResponse(json_data, content_type='application/json')
 
-        pythondata = JSONParser().parse(stream)
-
-        serializer = TaskDSerializer(data=pythondata)
-
-        if serializer.is_valid():
-            serializer.save()
-            res = {'msg': 'created'}
-            json_data = JSONRenderer().render(res)
-
-            return HttpResponse(json_data, content_type='application/json')
-    json_data = JSONRenderer().render(serializer.errors)
-    return HttpResponse(json_data, content_type='application/json')
 
 
-class TaskList(GenericAPIView, ListModelMixin):
-    queryset = Task.objects.all()
+
+
+class TaskListAPI(generics.ListAPIView):
     serializer_class = TaskSerializer
-    def get(self,request,*args,**kwargs):
-        return self.list(request,*args,**kwargs)
-
-
-class GETTASK(GenericAPIView, RetrieveModelMixin):
+    permission_class=(permissions.IsAuthenticatedOrReadOnly,)
     queryset = Task.objects.all()
+    filter_backends = [SearchFilter, OrderingFilter]
+    search_fields = ('title','description','author__name')
+
+
+class TaskDetailAPI(generics.RetrieveUpdateDestroyAPIView):
     serializer_class = TaskSerializer
-    def get(self,request,*args,**kwargs):
-        return self.retrieve(request,*args,**kwargs)
-
-
-class CreateTask(GenericAPIView, CreateModelMixin):
     queryset = Task.objects.all()
+    permission_class=(permissions.IsAuthenticatedOrReadOnly,)
+
+
+
+class TaskCreateAPI(generics.GenericAPIView, mixins.CreateModelMixin):
     serializer_class = TaskSerializer
-    def post(self,request,*args,**kwargs):
-        return self.create(request,*args,**kwargs)
+    queryset = Task.objects.all()
+    permission_class=(permissions.IsAuthenticatedOrReadOnly,)
 
 
+    def post(self, request):
+        return self.create(request)
