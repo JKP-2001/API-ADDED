@@ -731,6 +731,9 @@ def club(request):
 def occ(request):
     return render(request,'tasks/ocaasional.html')
 
+def cal(request):
+    return render(request,'tasks/calendar.html')
+
 
 
 

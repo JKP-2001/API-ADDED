@@ -12,6 +12,7 @@ urlpatterns = [
     path('task/branch/',views.acad,name='acad'),
     path('task/club/', views.club, name='club'),
     path('task/oca/',views.occ,name='occasional'),
+    path('task/cal',views.cal,name='calendar'),
 
 
 ]
