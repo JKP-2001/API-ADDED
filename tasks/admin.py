@@ -26,6 +26,9 @@ admin.site.register(CACLUB)
 admin.site.register(ROBOTICSCLUB)
 admin.site.register(EDCLUB)
 admin.site.register(UGCLUB)
+admin.site.register(ALCHERCLUB)
+admin.site.register(TechnicheCLUB)
+admin.site.register(OTHERCLUB)
 
 
 
