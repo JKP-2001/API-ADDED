@@ -122,4 +122,18 @@ urlpatterns = [
     path('UGCLUBAPI/', views.UGCLUBTaskListAPI.as_view(), name='tasks-list'),
     path('UGCLUBAPI/<int:pk>/', views.UGCLUBTaskDetailAPI.as_view(), name='tasks-detail'),
     path('UGCLUBAPI/new/', views.UGCLUBTaskCreateAPI.as_view(), name='tasks-create'),
+
+    path('ALCHERCLUBAPI/', views.ALCHERTaskListAPI.as_view(), name='tasks-list'),
+    path('ALCHERCLUBAPI/<int:pk>/', views.ALCHERTaskDetailAPI.as_view(), name='tasks-detail'),
+    path('ALCHERCLUBAPI/new/', views.ALCHERTaskCreateAPI.as_view(), name='tasks-create'),
+
+
+    path('TECHNICHECLUBAPI/', views.TechnicheTaskListAPI.as_view(), name='tasks-list'),
+    path('TECHNICHECLUBAPI/<int:pk>/', views.TechnicheTaskDetailAPI.as_view(), name='tasks-detail'),
+    path('TECHNICHECLUBAPI/new/', views.TechnicheTaskCreateAPI.as_view(), name='tasks-create'),
+
+
+    path('OTHERCLUBAPI/', views.OTHERTaskListAPI.as_view(), name='tasks-list'),
+    path('OTHERCLUBAPI/<int:pk>/', views.OTHERTaskDetailAPI.as_view(), name='tasks-detail'),
+    path('OTHERCLUBAPI/new/', views.OTHERTaskCreateAPI.as_view(), name='tasks-create'),
 ]

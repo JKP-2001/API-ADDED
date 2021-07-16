@@ -2,7 +2,8 @@
 from django.shortcuts import render
 from django.contrib.auth.mixins import LoginRequiredMixin,UserPassesTestMixin
 from django.views.generic import ListView,DetailView,CreateView,UpdateView,DeleteView
-from .models import Task, AEROCLUB, ASTROCLUB, CACLUB, EECLUB, PRAKRITICLUB, FNCCLUB, ROBOTICSCLUB, EDCLUB, UGCLUB
+from .models import Task, AEROCLUB, ASTROCLUB, CACLUB, EECLUB, PRAKRITICLUB, FNCCLUB, ROBOTICSCLUB, EDCLUB, UGCLUB, \
+    ALCHERCLUB, TechnicheCLUB, OTHERCLUB
 from .models import BT,CH,CL,CE,CSE,DES,ECE,EEE,MA,ME,PH,CODINGCLUB,SWC
 from django.http import HttpResponse, JsonResponse
 from rest_framework.parsers import JSONParser
@@ -10,7 +11,8 @@ from .aserializer import TaskSerializer
 from .serializer import BTSerializer, CHSerializer, CLSerializer, CESerializer, CSESerializer, DESSerializer, \
     ECESerializer, EEESerializer, MASerializer, MESerializer, PHSerializer, CODINGCLUBSerializer, SWCSerializer, \
     AEROCLUBSerializer, ASTROCLUBSerializer, CACLUBSerializer, EECLUBSerializer, PRAKRITICLUBSerializer, \
-    FNCCLUBSerializer, ROBOTICSCLUBSerializer, EDCLUBSerializer, UGCLUBSerializer
+    FNCCLUBSerializer, ROBOTICSCLUBSerializer, EDCLUBSerializer, UGCLUBSerializer, ALCHERSerializer, \
+    TechnicheSerializer, OTHERSerializer
 from rest_framework.response import Response
 from rest_framework import status, permissions
 from rest_framework.views import APIView
@@ -648,6 +650,75 @@ class UGCLUBTaskCreateAPI(generics.GenericAPIView, mixins.CreateModelMixin):
     def post(self, request):
         return self.create(request)
 
+class ALCHERTaskListAPI(generics.ListAPIView):
+    serializer_class = ALCHERSerializer
+    permission_class = (permissions.IsAuthenticatedOrReadOnly,)
+    queryset = ALCHERCLUB.objects.all()
+    filter_backends = [SearchFilter, OrderingFilter]
+    search_fields = ('title', 'description', 'author__name')
+
+
+class ALCHERTaskDetailAPI(generics.RetrieveUpdateDestroyAPIView):
+    serializer_class = ALCHERSerializer
+    queryset = ALCHERCLUB.objects.all()
+    permission_class = (permissions.IsAuthenticatedOrReadOnly,)
+
+
+class ALCHERTaskCreateAPI(generics.GenericAPIView, mixins.CreateModelMixin):
+    serializer_class = ALCHERSerializer
+    queryset = ALCHERCLUB.objects.all()
+    permission_class = (permissions.IsAuthenticatedOrReadOnly,)
+
+    def post(self, request):
+        return self.create(request)
+
+
+
+class TechnicheTaskListAPI(generics.ListAPIView):
+    serializer_class = TechnicheSerializer
+    permission_class = (permissions.IsAuthenticatedOrReadOnly,)
+    queryset = TechnicheCLUB.objects.all()
+    filter_backends = [SearchFilter, OrderingFilter]
+    search_fields = ('title', 'description', 'author__name')
+
+
+class TechnicheTaskDetailAPI(generics.RetrieveUpdateDestroyAPIView):
+    serializer_class = TechnicheSerializer
+    queryset = TechnicheCLUB.objects.all()
+    permission_class = (permissions.IsAuthenticatedOrReadOnly,)
+
+
+class TechnicheTaskCreateAPI(generics.GenericAPIView, mixins.CreateModelMixin):
+    serializer_class = TechnicheSerializer
+    queryset = TechnicheCLUB.objects.all()
+    permission_class = (permissions.IsAuthenticatedOrReadOnly,)
+
+    def post(self, request):
+        return self.create(request)
+
+
+class OTHERTaskListAPI(generics.ListAPIView):
+    serializer_class = OTHERSerializer
+    permission_class = (permissions.IsAuthenticatedOrReadOnly,)
+    queryset = OTHERCLUB.objects.all()
+    filter_backends = [SearchFilter, OrderingFilter]
+    search_fields = ('title', 'description', 'author__name')
+
+
+class OTHERTaskDetailAPI(generics.RetrieveUpdateDestroyAPIView):
+    serializer_class = OTHERSerializer
+    queryset = OTHERCLUB.objects.all()
+    permission_class = (permissions.IsAuthenticatedOrReadOnly,)
+
+
+class OTHERTaskCreateAPI(generics.GenericAPIView, mixins.CreateModelMixin):
+    serializer_class = OTHERSerializer
+    queryset = OTHERCLUB.objects.all()
+    permission_class = (permissions.IsAuthenticatedOrReadOnly,)
+
+    def post(self, request):
+        return self.create(request)
+
 def task(request):
     return render(request,'tasks/TaskView.html')
 
@@ -657,7 +728,8 @@ def acad(request):
 def club(request):
     return render(request,'tasks/clubs.html')
 
-
+def occ(request):
+    return render(request,'tasks/ocaasional.html')
 
 
 
