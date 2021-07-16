@@ -1,5 +1,6 @@
 from rest_framework import serializers
-from .models import Task, BT,CH,CL,CE,CSE,DES,ECE,EEE,MA,ME,PH
+from .models import Task, BT, CH, CL, CE, CSE, DES, ECE, EEE, MA, ME, PH, CODINGCLUB, SWC, AEROCLUB, ASTROCLUB, CACLUB, \
+    EECLUB, PRAKRITICLUB, FNCCLUB, ROBOTICSCLUB, EDCLUB, UGCLUB
 
 
 class TaskSerializer(serializers.ModelSerializer):
@@ -65,4 +66,66 @@ class MESerializer(serializers.ModelSerializer):
 class PHSerializer(serializers.ModelSerializer):
     class Meta:
         model = PH
+        fields = '__all__'
+
+
+class SWCSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = SWC
+        fields = '__all__'
+
+
+
+class CODINGCLUBSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = CODINGCLUB
+        fields = '__all__'
+
+
+class AEROCLUBSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = AEROCLUB
+        fields = '__all__'
+
+class ASTROCLUBSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = ASTROCLUB
+        fields = '__all__'
+
+
+class CACLUBSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = CACLUB
+        fields = '__all__'
+
+class EECLUBSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = EECLUB
+        fields = '__all__'
+
+
+class PRAKRITICLUBSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = PRAKRITICLUB
+        fields = '__all__'
+
+class FNCCLUBSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = FNCCLUB
+        fields = '__all__'
+
+
+class ROBOTICSCLUBSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = ROBOTICSCLUB
+        fields = '__all__'
+
+class EDCLUBSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = EDCLUB
+        fields = '__all__'
+
+class UGCLUBSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = UGCLUB
         fields = '__all__'

@@ -4,6 +4,62 @@ from django.utils import timezone
 from django.contrib.auth.models import User
 from django.urls import reverse
 
+BAT_CHOICE = (
+    ("0", "Select"),
+    ("Self", "Self"),
+    ("All Batches", "All Batches"),
+    ("B.Tech", "B.Tech"),
+    ("B.Tech 20", "B.Tech 20"),
+    ("B.Tech 19", "B.Tech 19"),
+    ("B.Tech 18", "B.Tech 18"),
+    ("B.Tech 17", "B.Tech 17"),
+    ("B.Tech 16", "B.Tech 16"),
+    ("B.Des", "B.Des"),
+    ("B.Des 20", "B.Des 20"),
+    ("B.Des 19", "B.Des 19"),
+    ("B.Des 18", "B.Des 18"),
+    ("B.Des 17", "B.Des 17"),
+    ("B.Des 16", "B.Des 16"),
+    ("M.Tech", "M.Tech"),
+    ("M.Tech 20", "M.Tech 20"),
+    ("M.Tech 19", "M.Tech 19"),
+    ("M.Tech 18", "M.Tech 18"),
+    ("M.Tech 17", "M.Tech 17"),
+    ("M.Tech 16", "M.Tech 16"),
+    ("PhD", "PhD"),
+    ("PhD 20", "PhD 20"),
+    ("PhD 19", "PhD 19"),
+    ("PhD 18", "PhD 18"),
+    ("PhD 17", "PhD 17"),
+    ("PhD 16", "PhD 16"),
+)
+DEP_CHOICE = (
+    ("0", "Select"),
+    ("Self", "Self"),
+    ("All Branches", "All Branches"),
+    ("Computer Science and Engineering", "Computer Science and Engineering"),
+    ("Biosciences and Bioengineering", "Biosciences and Bioengineering"),
+    ("Chemical Engineering", "Chemical Engineering"),
+    ("Civil Engineering", "Civil Engineering"),
+    ("Chemistry", "Chemistry"),
+    ("Design", "Design"),
+    ("Electronics and Electrical Engineering", "Electronics and Electrical Engineering"),
+    ("Mechanical Engineering", "Mechanical Engineering"),
+    ("Electronics and Communications Engineering", "Electronics and Communications Engineering"),
+    ("Mathematics and Computing", "Mathematics and Computing"),
+    ("Engineering Physics", "Engineering Physics"),
+    ("Humanities and Social Sciences", "Humanities and Social Sciences"),
+)
+REM_CHOICE = (
+    ("0", "Select"),
+    ("Daily", "Daily"),
+    ("Weekly", "Weekly"),
+    ("Monthly", "Monthly"),
+    ("Week before", "Week before"),
+    ("Custom", "Custom"),
+)
+
+
 # Create your models here.
 class Task(models.Model):
     CAT_CHOICE = (
@@ -19,60 +75,7 @@ class Task(models.Model):
         ("Lab Report","Lab Report"),
 
     )
-    BAT_CHOICE = (
-        ("0","Select"),
-        ("Self", "Self"),
-        ("All Batches", "All Batches"),
-        ("B.Tech", "B.Tech"),
-        ("B.Tech 20", "B.Tech 20"),
-        ("B.Tech 19", "B.Tech 19"),
-        ("B.Tech 18", "B.Tech 18"),
-        ("B.Tech 17", "B.Tech 17"),
-        ("B.Tech 16", "B.Tech 16"),
-        ("B.Des", "B.Des"),
-        ("B.Des 20", "B.Des 20"),
-        ("B.Des 19", "B.Des 19"),
-        ("B.Des 18", "B.Des 18"),
-        ("B.Des 17", "B.Des 17"),
-        ("B.Des 16", "B.Des 16"),
-        ("M.Tech", "M.Tech"),
-        ("M.Tech 20", "M.Tech 20"),
-        ("M.Tech 19", "M.Tech 19"),
-        ("M.Tech 18", "M.Tech 18"),
-        ("M.Tech 17", "M.Tech 17"),
-        ("M.Tech 16", "M.Tech 16"),
-        ("PhD", "PhD"),
-        ("PhD 20", "PhD 20"),
-        ("PhD 19", "PhD 19"),
-        ("PhD 18", "PhD 18"),
-        ("PhD 17", "PhD 17"),
-        ("PhD 16", "PhD 16"),
-    )
-    DEP_CHOICE =(
-        ("0","Select"),
-        ("Self", "Self"),
-        ("All Branches", "All Branches"),
-        ("Computer Science and Engineering","Computer Science and Engineering"),
-        ("Biosciences and Bioengineering","Biosciences and Bioengineering"),
-        ("Chemical Engineering","Chemical Engineering"),
-        ("Civil Engineering","Civil Engineering"),
-        ("Chemistry","Chemistry"),
-        ("Design","Design"),
-        ("Electronics and Electrical Engineering","Electronics and Electrical Engineering"),
-        ("Mechanical Engineering","Mechanical Engineering"),
-        ("Electronics and Communications Engineering","Electronics and Communications Engineering"),
-        ("Mathematics and Computing","Mathematics and Computing"),
-        ("Engineering Physics","Engineering Physics"),
-        ("Humanities and Social Sciences","Humanities and Social Sciences"),
-    )
-    REM_CHOICE =(
-        ("0" , "Select"),
-        ("Daily" , "Daily"),
-        ("Weekly" , "Weekly"),
-        ("Monthly" , "Monthly"),
-        ("Week before" , "Week before"),
-        ("Custom" , "Custom"),
-    )
+
 
     COURSENAME = (
         ("0", "Select"),
@@ -402,6 +405,7 @@ class Task(models.Model):
     target_batch = models.CharField(max_length=13,choices = BAT_CHOICE,default="Self")
     target_branch = models.CharField(max_length=45,choices = DEP_CHOICE,default="Self")
     date = models.DateField(default=timezone.localtime(timezone.now()))
+    deadline = models.DateField(default=timezone.localtime(timezone.now()))
     time_from = models.TimeField(default=timezone.localtime(timezone.now()))
     time_to = models.TimeField(default=timezone.localtime(timezone.now()))
     remainder_date = models.DateField(default=timezone.localtime(timezone.now()))
@@ -440,48 +444,6 @@ class BT(models.Model):
         ("Viva", "Viva"),
         ("Lab Report", "Lab Report"),
 
-    )
-    BAT_CHOICE = (
-        ("0", "Select"),
-        ("Self", "Self"),
-        ("All Batches", "All Batches"),
-        ("B.Tech", "B.Tech"),
-        ("B.Tech 20", "B.Tech 20"),
-        ("B.Tech 19", "B.Tech 19"),
-        ("B.Tech 18", "B.Tech 18"),
-        ("B.Tech 17", "B.Tech 17"),
-        ("B.Tech 16", "B.Tech 16"),
-        ("B.Des", "B.Des"),
-        ("B.Des 20", "B.Des 20"),
-        ("B.Des 19", "B.Des 19"),
-        ("B.Des 18", "B.Des 18"),
-        ("B.Des 17", "B.Des 17"),
-        ("B.Des 16", "B.Des 16"),
-        ("M.Tech", "M.Tech"),
-        ("M.Tech 20", "M.Tech 20"),
-        ("M.Tech 19", "M.Tech 19"),
-        ("M.Tech 18", "M.Tech 18"),
-        ("M.Tech 17", "M.Tech 17"),
-        ("M.Tech 16", "M.Tech 16"),
-        ("PhD", "PhD"),
-        ("PhD 20", "PhD 20"),
-        ("PhD 19", "PhD 19"),
-        ("PhD 18", "PhD 18"),
-        ("PhD 17", "PhD 17"),
-        ("PhD 16", "PhD 16"),
-    )
-    DEP_CHOICE = (
-        ("0", "Biosciences and Bioengineering"),
-        ("Self", "Self"),
-
-    )
-    REM_CHOICE = (
-        ("0", "Select"),
-        ("Daily", "Daily"),
-        ("Weekly", "Weekly"),
-        ("Monthly", "Monthly"),
-        ("Week before", "Week before"),
-        ("Custom", "Custom"),
     )
 
     COURSENAME = (
@@ -525,6 +487,7 @@ class BT(models.Model):
     target_batch = models.CharField(max_length=13, choices=BAT_CHOICE, default="Self")
     target_branch = models.CharField(max_length=45, choices=DEP_CHOICE, default="Self")
     date = models.DateField(default=timezone.localtime(timezone.now()))
+    deadline = models.DateField(default=timezone.localtime(timezone.now()))
     time_from = models.TimeField(default=timezone.localtime(timezone.now()))
     time_to = models.TimeField(default=timezone.localtime(timezone.now()))
     remainder_date = models.DateField(default=timezone.localtime(timezone.now()))
@@ -553,48 +516,7 @@ class CH(models.Model):
         ("Lab Report", "Lab Report"),
 
     )
-    BAT_CHOICE = (
-        ("0", "Select"),
-        ("Self", "Self"),
-        ("All Batches", "All Batches"),
-        ("B.Tech", "B.Tech"),
-        ("B.Tech 20", "B.Tech 20"),
-        ("B.Tech 19", "B.Tech 19"),
-        ("B.Tech 18", "B.Tech 18"),
-        ("B.Tech 17", "B.Tech 17"),
-        ("B.Tech 16", "B.Tech 16"),
-        ("B.Des", "B.Des"),
-        ("B.Des 20", "B.Des 20"),
-        ("B.Des 19", "B.Des 19"),
-        ("B.Des 18", "B.Des 18"),
-        ("B.Des 17", "B.Des 17"),
-        ("B.Des 16", "B.Des 16"),
-        ("M.Tech", "M.Tech"),
-        ("M.Tech 20", "M.Tech 20"),
-        ("M.Tech 19", "M.Tech 19"),
-        ("M.Tech 18", "M.Tech 18"),
-        ("M.Tech 17", "M.Tech 17"),
-        ("M.Tech 16", "M.Tech 16"),
-        ("PhD", "PhD"),
-        ("PhD 20", "PhD 20"),
-        ("PhD 19", "PhD 19"),
-        ("PhD 18", "PhD 18"),
-        ("PhD 17", "PhD 17"),
-        ("PhD 16", "PhD 16"),
-    )
-    DEP_CHOICE = (
-        ("0", "Chemical Science and Technology"),
-        ("Self", "Self"),
 
-    )
-    REM_CHOICE = (
-        ("0", "Select"),
-        ("Daily", "Daily"),
-        ("Weekly", "Weekly"),
-        ("Monthly", "Monthly"),
-        ("Week before", "Week before"),
-        ("Custom", "Custom"),
-    )
 
     COURSENAME = (
         ("0", "Select"),
@@ -637,6 +559,7 @@ class CH(models.Model):
     target_batch = models.CharField(max_length=13, choices=BAT_CHOICE, default="Self")
     target_branch = models.CharField(max_length=45, choices=DEP_CHOICE, default="Self")
     date = models.DateField(default=timezone.localtime(timezone.now()))
+    deadline = models.DateField(default=timezone.localtime(timezone.now()))
     time_from = models.TimeField(default=timezone.localtime(timezone.now()))
     time_to = models.TimeField(default=timezone.localtime(timezone.now()))
     remainder_date = models.DateField(default=timezone.localtime(timezone.now()))
@@ -666,48 +589,7 @@ class CL(models.Model):
         ("Lab Report", "Lab Report"),
 
     )
-    BAT_CHOICE = (
-        ("0", "Select"),
-        ("Self", "Self"),
-        ("All Batches", "All Batches"),
-        ("B.Tech", "B.Tech"),
-        ("B.Tech 20", "B.Tech 20"),
-        ("B.Tech 19", "B.Tech 19"),
-        ("B.Tech 18", "B.Tech 18"),
-        ("B.Tech 17", "B.Tech 17"),
-        ("B.Tech 16", "B.Tech 16"),
-        ("B.Des", "B.Des"),
-        ("B.Des 20", "B.Des 20"),
-        ("B.Des 19", "B.Des 19"),
-        ("B.Des 18", "B.Des 18"),
-        ("B.Des 17", "B.Des 17"),
-        ("B.Des 16", "B.Des 16"),
-        ("M.Tech", "M.Tech"),
-        ("M.Tech 20", "M.Tech 20"),
-        ("M.Tech 19", "M.Tech 19"),
-        ("M.Tech 18", "M.Tech 18"),
-        ("M.Tech 17", "M.Tech 17"),
-        ("M.Tech 16", "M.Tech 16"),
-        ("PhD", "PhD"),
-        ("PhD 20", "PhD 20"),
-        ("PhD 19", "PhD 19"),
-        ("PhD 18", "PhD 18"),
-        ("PhD 17", "PhD 17"),
-        ("PhD 16", "PhD 16"),
-    )
-    DEP_CHOICE = (
-        ("0", "Chemical Engineering "),
-        ("Self", "Self"),
 
-    )
-    REM_CHOICE = (
-        ("0", "Select"),
-        ("Daily", "Daily"),
-        ("Weekly", "Weekly"),
-        ("Monthly", "Monthly"),
-        ("Week before", "Week before"),
-        ("Custom", "Custom"),
-    )
 
     COURSENAME = (
         ("0", "Select"),
@@ -753,6 +635,7 @@ class CL(models.Model):
     target_batch = models.CharField(max_length=13, choices=BAT_CHOICE, default="Self")
     target_branch = models.CharField(max_length=45, choices=DEP_CHOICE, default="Self")
     date = models.DateField(default=timezone.localtime(timezone.now()))
+    deadline = models.DateField(default=timezone.localtime(timezone.now()))
     time_from = models.TimeField(default=timezone.localtime(timezone.now()))
     time_to = models.TimeField(default=timezone.localtime(timezone.now()))
     remainder_date = models.DateField(default=timezone.localtime(timezone.now()))
@@ -781,48 +664,6 @@ class CE(models.Model):
         ("Viva", "Viva"),
         ("Lab Report", "Lab Report"),
 
-    )
-    BAT_CHOICE = (
-        ("0", "Select"),
-        ("Self", "Self"),
-        ("All Batches", "All Batches"),
-        ("B.Tech", "B.Tech"),
-        ("B.Tech 20", "B.Tech 20"),
-        ("B.Tech 19", "B.Tech 19"),
-        ("B.Tech 18", "B.Tech 18"),
-        ("B.Tech 17", "B.Tech 17"),
-        ("B.Tech 16", "B.Tech 16"),
-        ("B.Des", "B.Des"),
-        ("B.Des 20", "B.Des 20"),
-        ("B.Des 19", "B.Des 19"),
-        ("B.Des 18", "B.Des 18"),
-        ("B.Des 17", "B.Des 17"),
-        ("B.Des 16", "B.Des 16"),
-        ("M.Tech", "M.Tech"),
-        ("M.Tech 20", "M.Tech 20"),
-        ("M.Tech 19", "M.Tech 19"),
-        ("M.Tech 18", "M.Tech 18"),
-        ("M.Tech 17", "M.Tech 17"),
-        ("M.Tech 16", "M.Tech 16"),
-        ("PhD", "PhD"),
-        ("PhD 20", "PhD 20"),
-        ("PhD 19", "PhD 19"),
-        ("PhD 18", "PhD 18"),
-        ("PhD 17", "PhD 17"),
-        ("PhD 16", "PhD 16"),
-    )
-    DEP_CHOICE = (
-        ("0", "Civil Engineering"),
-        ("Self", "Self"),
-
-    )
-    REM_CHOICE = (
-        ("0", "Select"),
-        ("Daily", "Daily"),
-        ("Weekly", "Weekly"),
-        ("Monthly", "Monthly"),
-        ("Week before", "Week before"),
-        ("Custom", "Custom"),
     )
 
     COURSENAME = (
@@ -878,6 +719,7 @@ class CE(models.Model):
     target_batch = models.CharField(max_length=13, choices=BAT_CHOICE, default="Self")
     target_branch = models.CharField(max_length=45, choices=DEP_CHOICE, default="Self")
     date = models.DateField(default=timezone.localtime(timezone.now()))
+    deadline = models.DateField(default=timezone.localtime(timezone.now()))
     time_from = models.TimeField(default=timezone.localtime(timezone.now()))
     time_to = models.TimeField(default=timezone.localtime(timezone.now()))
     remainder_date = models.DateField(default=timezone.localtime(timezone.now()))
@@ -907,48 +749,7 @@ class CSE(models.Model):
         ("Lab Report", "Lab Report"),
 
     )
-    BAT_CHOICE = (
-        ("0", "Select"),
-        ("Self", "Self"),
-        ("All Batches", "All Batches"),
-        ("B.Tech", "B.Tech"),
-        ("B.Tech 20", "B.Tech 20"),
-        ("B.Tech 19", "B.Tech 19"),
-        ("B.Tech 18", "B.Tech 18"),
-        ("B.Tech 17", "B.Tech 17"),
-        ("B.Tech 16", "B.Tech 16"),
-        ("B.Des", "B.Des"),
-        ("B.Des 20", "B.Des 20"),
-        ("B.Des 19", "B.Des 19"),
-        ("B.Des 18", "B.Des 18"),
-        ("B.Des 17", "B.Des 17"),
-        ("B.Des 16", "B.Des 16"),
-        ("M.Tech", "M.Tech"),
-        ("M.Tech 20", "M.Tech 20"),
-        ("M.Tech 19", "M.Tech 19"),
-        ("M.Tech 18", "M.Tech 18"),
-        ("M.Tech 17", "M.Tech 17"),
-        ("M.Tech 16", "M.Tech 16"),
-        ("PhD", "PhD"),
-        ("PhD 20", "PhD 20"),
-        ("PhD 19", "PhD 19"),
-        ("PhD 18", "PhD 18"),
-        ("PhD 17", "PhD 17"),
-        ("PhD 16", "PhD 16"),
-    )
-    DEP_CHOICE = (
-        ("0", "Computer Science And Engineering"),
-        ("Self", "Self"),
 
-    )
-    REM_CHOICE = (
-        ("0", "Select"),
-        ("Daily", "Daily"),
-        ("Weekly", "Weekly"),
-        ("Monthly", "Monthly"),
-        ("Week before", "Week before"),
-        ("Custom", "Custom"),
-    )
 
     COURSENAME = (
         ("0", "Select"),
@@ -992,6 +793,7 @@ class CSE(models.Model):
     target_batch = models.CharField(max_length=13, choices=BAT_CHOICE, default="Self")
     target_branch = models.CharField(max_length=45, choices=DEP_CHOICE, default="Self")
     date = models.DateField(default=timezone.localtime(timezone.now()))
+    deadline = models.DateField(default=timezone.localtime(timezone.now()))
     time_from = models.TimeField(default=timezone.localtime(timezone.now()))
     time_to = models.TimeField(default=timezone.localtime(timezone.now()))
     remainder_date = models.DateField(default=timezone.localtime(timezone.now()))
@@ -1020,48 +822,6 @@ class DES(models.Model):
         ("Viva", "Viva"),
         ("Lab Report", "Lab Report"),
 
-    )
-    BAT_CHOICE = (
-        ("0", "Select"),
-        ("Self", "Self"),
-        ("All Batches", "All Batches"),
-        ("B.Tech", "B.Tech"),
-        ("B.Tech 20", "B.Tech 20"),
-        ("B.Tech 19", "B.Tech 19"),
-        ("B.Tech 18", "B.Tech 18"),
-        ("B.Tech 17", "B.Tech 17"),
-        ("B.Tech 16", "B.Tech 16"),
-        ("B.Des", "B.Des"),
-        ("B.Des 20", "B.Des 20"),
-        ("B.Des 19", "B.Des 19"),
-        ("B.Des 18", "B.Des 18"),
-        ("B.Des 17", "B.Des 17"),
-        ("B.Des 16", "B.Des 16"),
-        ("M.Tech", "M.Tech"),
-        ("M.Tech 20", "M.Tech 20"),
-        ("M.Tech 19", "M.Tech 19"),
-        ("M.Tech 18", "M.Tech 18"),
-        ("M.Tech 17", "M.Tech 17"),
-        ("M.Tech 16", "M.Tech 16"),
-        ("PhD", "PhD"),
-        ("PhD 20", "PhD 20"),
-        ("PhD 19", "PhD 19"),
-        ("PhD 18", "PhD 18"),
-        ("PhD 17", "PhD 17"),
-        ("PhD 16", "PhD 16"),
-    )
-    DEP_CHOICE = (
-        ("0", "Design"),
-        ("Self", "Self"),
-
-    )
-    REM_CHOICE = (
-        ("0", "Select"),
-        ("Daily", "Daily"),
-        ("Weekly", "Weekly"),
-        ("Monthly", "Monthly"),
-        ("Week before", "Week before"),
-        ("Custom", "Custom"),
     )
 
     COURSENAME = (
@@ -1116,6 +876,7 @@ class DES(models.Model):
     target_batch = models.CharField(max_length=13, choices=BAT_CHOICE, default="Self")
     target_branch = models.CharField(max_length=45, choices=DEP_CHOICE, default="Self")
     date = models.DateField(default=timezone.localtime(timezone.now()))
+    deadline = models.DateField(default=timezone.localtime(timezone.now()))
     time_from = models.TimeField(default=timezone.localtime(timezone.now()))
     time_to = models.TimeField(default=timezone.localtime(timezone.now()))
     remainder_date = models.DateField(default=timezone.localtime(timezone.now()))
@@ -1145,48 +906,7 @@ class ECE(models.Model):
         ("Lab Report", "Lab Report"),
 
     )
-    BAT_CHOICE = (
-        ("0", "Select"),
-        ("Self", "Self"),
-        ("All Batches", "All Batches"),
-        ("B.Tech", "B.Tech"),
-        ("B.Tech 20", "B.Tech 20"),
-        ("B.Tech 19", "B.Tech 19"),
-        ("B.Tech 18", "B.Tech 18"),
-        ("B.Tech 17", "B.Tech 17"),
-        ("B.Tech 16", "B.Tech 16"),
-        ("B.Des", "B.Des"),
-        ("B.Des 20", "B.Des 20"),
-        ("B.Des 19", "B.Des 19"),
-        ("B.Des 18", "B.Des 18"),
-        ("B.Des 17", "B.Des 17"),
-        ("B.Des 16", "B.Des 16"),
-        ("M.Tech", "M.Tech"),
-        ("M.Tech 20", "M.Tech 20"),
-        ("M.Tech 19", "M.Tech 19"),
-        ("M.Tech 18", "M.Tech 18"),
-        ("M.Tech 17", "M.Tech 17"),
-        ("M.Tech 16", "M.Tech 16"),
-        ("PhD", "PhD"),
-        ("PhD 20", "PhD 20"),
-        ("PhD 19", "PhD 19"),
-        ("PhD 18", "PhD 18"),
-        ("PhD 17", "PhD 17"),
-        ("PhD 16", "PhD 16"),
-    )
-    DEP_CHOICE = (
-        ("0", "Electronics And Communications Engineering"),
-        ("Self", "Self"),
 
-    )
-    REM_CHOICE = (
-        ("0", "Select"),
-        ("Daily", "Daily"),
-        ("Weekly", "Weekly"),
-        ("Monthly", "Monthly"),
-        ("Week before", "Week before"),
-        ("Custom", "Custom"),
-    )
 
     COURSENAME = (
         ("0", "Select"),
@@ -1241,6 +961,7 @@ class ECE(models.Model):
     target_batch = models.CharField(max_length=13, choices=BAT_CHOICE, default="Self")
     target_branch = models.CharField(max_length=45, choices=DEP_CHOICE, default="Self")
     date = models.DateField(default=timezone.localtime(timezone.now()))
+    deadline = models.DateField(default=timezone.localtime(timezone.now()))
     time_from = models.TimeField(default=timezone.localtime(timezone.now()))
     time_to = models.TimeField(default=timezone.localtime(timezone.now()))
     remainder_date = models.DateField(default=timezone.localtime(timezone.now()))
@@ -1270,48 +991,7 @@ class EEE(models.Model):
         ("Lab Report", "Lab Report"),
 
     )
-    BAT_CHOICE = (
-        ("0", "Select"),
-        ("Self", "Self"),
-        ("All Batches", "All Batches"),
-        ("B.Tech", "B.Tech"),
-        ("B.Tech 20", "B.Tech 20"),
-        ("B.Tech 19", "B.Tech 19"),
-        ("B.Tech 18", "B.Tech 18"),
-        ("B.Tech 17", "B.Tech 17"),
-        ("B.Tech 16", "B.Tech 16"),
-        ("B.Des", "B.Des"),
-        ("B.Des 20", "B.Des 20"),
-        ("B.Des 19", "B.Des 19"),
-        ("B.Des 18", "B.Des 18"),
-        ("B.Des 17", "B.Des 17"),
-        ("B.Des 16", "B.Des 16"),
-        ("M.Tech", "M.Tech"),
-        ("M.Tech 20", "M.Tech 20"),
-        ("M.Tech 19", "M.Tech 19"),
-        ("M.Tech 18", "M.Tech 18"),
-        ("M.Tech 17", "M.Tech 17"),
-        ("M.Tech 16", "M.Tech 16"),
-        ("PhD", "PhD"),
-        ("PhD 20", "PhD 20"),
-        ("PhD 19", "PhD 19"),
-        ("PhD 18", "PhD 18"),
-        ("PhD 17", "PhD 17"),
-        ("PhD 16", "PhD 16"),
-    )
-    DEP_CHOICE = (
-        ("0", "Electronics And Electrical Engineering"),
-        ("Self", "Self"),
 
-    )
-    REM_CHOICE = (
-        ("0", "Select"),
-        ("Daily", "Daily"),
-        ("Weekly", "Weekly"),
-        ("Monthly", "Monthly"),
-        ("Week before", "Week before"),
-        ("Custom", "Custom"),
-    )
 
     COURSENAME = (
         ("0", "Select"),
@@ -1366,6 +1046,7 @@ class EEE(models.Model):
     target_batch = models.CharField(max_length=13, choices=BAT_CHOICE, default="Self")
     target_branch = models.CharField(max_length=45, choices=DEP_CHOICE, default="Self")
     date = models.DateField(default=timezone.localtime(timezone.now()))
+    deadline = models.DateField(default=timezone.localtime(timezone.now()))
     time_from = models.TimeField(default=timezone.localtime(timezone.now()))
     time_to = models.TimeField(default=timezone.localtime(timezone.now()))
     remainder_date = models.DateField(default=timezone.localtime(timezone.now()))
@@ -1393,48 +1074,6 @@ class MA(models.Model):
         ("Viva", "Viva"),
         ("Lab Report", "Lab Report"),
 
-    )
-    BAT_CHOICE = (
-        ("0", "Select"),
-        ("Self", "Self"),
-        ("All Batches", "All Batches"),
-        ("B.Tech", "B.Tech"),
-        ("B.Tech 20", "B.Tech 20"),
-        ("B.Tech 19", "B.Tech 19"),
-        ("B.Tech 18", "B.Tech 18"),
-        ("B.Tech 17", "B.Tech 17"),
-        ("B.Tech 16", "B.Tech 16"),
-        ("B.Des", "B.Des"),
-        ("B.Des 20", "B.Des 20"),
-        ("B.Des 19", "B.Des 19"),
-        ("B.Des 18", "B.Des 18"),
-        ("B.Des 17", "B.Des 17"),
-        ("B.Des 16", "B.Des 16"),
-        ("M.Tech", "M.Tech"),
-        ("M.Tech 20", "M.Tech 20"),
-        ("M.Tech 19", "M.Tech 19"),
-        ("M.Tech 18", "M.Tech 18"),
-        ("M.Tech 17", "M.Tech 17"),
-        ("M.Tech 16", "M.Tech 16"),
-        ("PhD", "PhD"),
-        ("PhD 20", "PhD 20"),
-        ("PhD 19", "PhD 19"),
-        ("PhD 18", "PhD 18"),
-        ("PhD 17", "PhD 17"),
-        ("PhD 16", "PhD 16"),
-    )
-    DEP_CHOICE = (
-        ("0", "Mathematics And Computing"),
-        ("Self", "Self"),
-
-    )
-    REM_CHOICE = (
-        ("0", "Select"),
-        ("Daily", "Daily"),
-        ("Weekly", "Weekly"),
-        ("Monthly", "Monthly"),
-        ("Week before", "Week before"),
-        ("Custom", "Custom"),
     )
 
     COURSENAME = (
@@ -1480,6 +1119,7 @@ class MA(models.Model):
     target_batch = models.CharField(max_length=13, choices=BAT_CHOICE, default="Self")
     target_branch = models.CharField(max_length=45, choices=DEP_CHOICE, default="Self")
     date = models.DateField(default=timezone.localtime(timezone.now()))
+    deadline = models.DateField(default=timezone.localtime(timezone.now()))
     time_from = models.TimeField(default=timezone.localtime(timezone.now()))
     time_to = models.TimeField(default=timezone.localtime(timezone.now()))
     remainder_date = models.DateField(default=timezone.localtime(timezone.now()))
@@ -1510,48 +1150,7 @@ class ME(models.Model):
         ("Lab Report", "Lab Report"),
 
     )
-    BAT_CHOICE = (
-        ("0", "Select"),
-        ("Self", "Self"),
-        ("All Batches", "All Batches"),
-        ("B.Tech", "B.Tech"),
-        ("B.Tech 20", "B.Tech 20"),
-        ("B.Tech 19", "B.Tech 19"),
-        ("B.Tech 18", "B.Tech 18"),
-        ("B.Tech 17", "B.Tech 17"),
-        ("B.Tech 16", "B.Tech 16"),
-        ("B.Des", "B.Des"),
-        ("B.Des 20", "B.Des 20"),
-        ("B.Des 19", "B.Des 19"),
-        ("B.Des 18", "B.Des 18"),
-        ("B.Des 17", "B.Des 17"),
-        ("B.Des 16", "B.Des 16"),
-        ("M.Tech", "M.Tech"),
-        ("M.Tech 20", "M.Tech 20"),
-        ("M.Tech 19", "M.Tech 19"),
-        ("M.Tech 18", "M.Tech 18"),
-        ("M.Tech 17", "M.Tech 17"),
-        ("M.Tech 16", "M.Tech 16"),
-        ("PhD", "PhD"),
-        ("PhD 20", "PhD 20"),
-        ("PhD 19", "PhD 19"),
-        ("PhD 18", "PhD 18"),
-        ("PhD 17", "PhD 17"),
-        ("PhD 16", "PhD 16"),
-    )
-    DEP_CHOICE = (
-        ("0", "Mechanical Engineering"),
-        ("Self", "Self"),
 
-    )
-    REM_CHOICE = (
-        ("0", "Select"),
-        ("Daily", "Daily"),
-        ("Weekly", "Weekly"),
-        ("Monthly", "Monthly"),
-        ("Week before", "Week before"),
-        ("Custom", "Custom"),
-    )
 
     COURSENAME = (
         ("0", "Select"),
@@ -1602,6 +1201,7 @@ class ME(models.Model):
     target_batch = models.CharField(max_length=13, choices=BAT_CHOICE, default="Self")
     target_branch = models.CharField(max_length=45, choices=DEP_CHOICE, default="Self")
     date = models.DateField(default=timezone.localtime(timezone.now()))
+    deadline = models.DateField(default=timezone.localtime(timezone.now()))
     time_from = models.TimeField(default=timezone.localtime(timezone.now()))
     time_to = models.TimeField(default=timezone.localtime(timezone.now()))
     remainder_date = models.DateField(default=timezone.localtime(timezone.now()))
@@ -1631,48 +1231,7 @@ class PH(models.Model):
         ("Lab Report", "Lab Report"),
 
     )
-    BAT_CHOICE = (
-        ("0", "Select"),
-        ("Self", "Self"),
-        ("All Batches", "All Batches"),
-        ("B.Tech", "B.Tech"),
-        ("B.Tech 20", "B.Tech 20"),
-        ("B.Tech 19", "B.Tech 19"),
-        ("B.Tech 18", "B.Tech 18"),
-        ("B.Tech 17", "B.Tech 17"),
-        ("B.Tech 16", "B.Tech 16"),
-        ("B.Des", "B.Des"),
-        ("B.Des 20", "B.Des 20"),
-        ("B.Des 19", "B.Des 19"),
-        ("B.Des 18", "B.Des 18"),
-        ("B.Des 17", "B.Des 17"),
-        ("B.Des 16", "B.Des 16"),
-        ("M.Tech", "M.Tech"),
-        ("M.Tech 20", "M.Tech 20"),
-        ("M.Tech 19", "M.Tech 19"),
-        ("M.Tech 18", "M.Tech 18"),
-        ("M.Tech 17", "M.Tech 17"),
-        ("M.Tech 16", "M.Tech 16"),
-        ("PhD", "PhD"),
-        ("PhD 20", "PhD 20"),
-        ("PhD 19", "PhD 19"),
-        ("PhD 18", "PhD 18"),
-        ("PhD 17", "PhD 17"),
-        ("PhD 16", "PhD 16"),
-    )
-    DEP_CHOICE = (
-        ("0", "Engineering Physics"),
-        ("Self", "Self"),
 
-    )
-    REM_CHOICE = (
-        ("0", "Select"),
-        ("Daily", "Daily"),
-        ("Weekly", "Weekly"),
-        ("Monthly", "Monthly"),
-        ("Week before", "Week before"),
-        ("Custom", "Custom"),
-    )
 
     COURSENAME = (
         ("0", "Select"),
@@ -1724,6 +1283,7 @@ class PH(models.Model):
     target_batch = models.CharField(max_length=13, choices=BAT_CHOICE, default="Self")
     target_branch = models.CharField(max_length=45, choices=DEP_CHOICE, default="Self")
     date = models.DateField(default=timezone.localtime(timezone.now()))
+    deadline = models.DateField(default=timezone.localtime(timezone.now()))
     time_from = models.TimeField(default=timezone.localtime(timezone.now()))
     time_to = models.TimeField(default=timezone.localtime(timezone.now()))
     remainder_date = models.DateField(default=timezone.localtime(timezone.now()))
@@ -1736,3 +1296,499 @@ class PH(models.Model):
 
     def get_absolute_url(self):
         return reverse('tasks-detail', kwargs={"pk": self.pk})
+
+
+
+
+class SWC(models.Model):
+    CAT_CHOICE = (
+        ("0", "CLUB RELATED ACTIVITIES"),
+
+    )
+    EVENT_TYPE = (
+        ("0", "Select"),
+        ("MEETINGS", "MEETINGS"),
+        ("PARTIES", "PARTIES"),
+        ("TUTORIALS", "TUTORIALS"),
+        ("SHOWCASES", "SHOWCASES"),
+        ("PROJECTS","PROJECTS"),
+
+    )
+
+
+    CLUB_CHOICE = (
+        ("0", "Students Web Committee"),
+        ("Self", "Self"),
+
+    )
+
+
+
+    title = models.CharField(max_length=20)
+    description = models.TextField()
+    club=models.CharField(max_length=40,choices=CLUB_CHOICE,default='0')
+    event_type = models.CharField(max_length=40, choices=CAT_CHOICE, default="0")
+    sub_event = models.CharField(max_length=40, choices=EVENT_TYPE, default="0")
+    target_batch = models.CharField(max_length=13, choices=BAT_CHOICE, default="Self")
+    target_branch = models.CharField(max_length=45, choices=DEP_CHOICE, default="Self")
+    date = models.DateField(default=timezone.localtime(timezone.now()))
+    deadline = models.DateField(default=timezone.localtime(timezone.now()))
+    time_from = models.TimeField(default=timezone.localtime(timezone.now()))
+    time_to = models.TimeField(default=timezone.localtime(timezone.now()))
+    remainder_date = models.DateField(default=timezone.localtime(timezone.now()))
+    remainder_time = models.TimeField(default=timezone.localtime(timezone.now()))
+    remainder = models.CharField(max_length=12, choices=REM_CHOICE, default="None")
+    author = models.ForeignKey(User, on_delete=models.CASCADE, null=True)
+
+    def __str__(self):
+        return self.title
+
+    def get_absolute_url(self):
+        return reverse('tasks-detail', kwargs={"pk": self.pk})
+
+
+
+
+
+
+
+
+class CODINGCLUB(models.Model):
+    CAT_CHOICE = (
+        ("0", "CLUB RELATED ACTIVITIES"),
+
+    )
+    EVENT_TYPE = (
+        ("0", "Select"),
+        ("MEETINGS", "MEETINGS"),
+        ("PARTIES", "PARTIES"),
+        ("TUTORIALS", "TUTORIALS"),
+        ("SHOWCASES", "SHOWCASES"),
+
+    )
+
+
+    CLUB_CHOICE = (
+        ("0", "CODING CLUB"),
+        ("Self", "Self"),
+
+    )
+
+
+    title = models.CharField(max_length=20)
+    description = models.TextField()
+    event_type = models.CharField(max_length=40, choices=CAT_CHOICE, default="0")
+    sub_event = models.CharField(max_length=40, choices=EVENT_TYPE, default="0")
+    club = models.CharField(max_length=40, choices=CLUB_CHOICE, default='0')
+    target_batch = models.CharField(max_length=13, choices=BAT_CHOICE, default="Self")
+    target_branch = models.CharField(max_length=45, choices=DEP_CHOICE, default="Self")
+    date = models.DateField(default=timezone.localtime(timezone.now()))
+    deadline = models.DateField(default=timezone.localtime(timezone.now()))
+    time_from = models.TimeField(default=timezone.localtime(timezone.now()))
+    time_to = models.TimeField(default=timezone.localtime(timezone.now()))
+    remainder_date = models.DateField(default=timezone.localtime(timezone.now()))
+    remainder_time = models.TimeField(default=timezone.localtime(timezone.now()))
+    remainder = models.CharField(max_length=12, choices=REM_CHOICE, default="None")
+    author = models.ForeignKey(User, on_delete=models.CASCADE, null=True)
+
+    def __str__(self):
+        return self.title
+
+    def get_absolute_url(self):
+        return reverse('tasks-detail', kwargs={"pk": self.pk})
+
+
+class AEROCLUB(models.Model):
+    CAT_CHOICE = (
+        ("0", "CLUB RELATED ACTIVITIES"),
+
+    )
+    EVENT_TYPE = (
+        ("0", "Select"),
+        ("MEETINGS", "MEETINGS"),
+        ("PARTIES", "PARTIES"),
+        ("TUTORIALS", "TUTORIALS"),
+        ("SHOWCASES", "SHOWCASES"),
+
+    )
+
+
+
+    CLUB_CHOICE = (
+        ("0", "AERO-MODELLING CLUB"),
+        ("Self", "Self"),
+
+    )
+
+
+    title = models.CharField(max_length=20)
+    description = models.TextField()
+    event_type = models.CharField(max_length=40, choices=CAT_CHOICE, default="0")
+    sub_event = models.CharField(max_length=40, choices=EVENT_TYPE, default="0")
+    club = models.CharField(max_length=40, choices=CLUB_CHOICE, default='0')
+    target_batch = models.CharField(max_length=13, choices=BAT_CHOICE, default="Self")
+    target_branch = models.CharField(max_length=45, choices=DEP_CHOICE, default="Self")
+    date = models.DateField(default=timezone.localtime(timezone.now()))
+    deadline = models.DateField(default=timezone.localtime(timezone.now()))
+    time_from = models.TimeField(default=timezone.localtime(timezone.now()))
+    time_to = models.TimeField(default=timezone.localtime(timezone.now()))
+    remainder_date = models.DateField(default=timezone.localtime(timezone.now()))
+    remainder_time = models.TimeField(default=timezone.localtime(timezone.now()))
+    remainder = models.CharField(max_length=12, choices=REM_CHOICE, default="None")
+    author = models.ForeignKey(User, on_delete=models.CASCADE, null=True)
+
+    def __str__(self):
+        return self.title
+
+    def get_absolute_url(self):
+        return reverse('tasks-detail', kwargs={"pk": self.pk})
+
+
+class ASTROCLUB(models.Model):
+    CAT_CHOICE = (
+        ("0", "CLUB RELATED ACTIVITIES"),
+
+    )
+    EVENT_TYPE = (
+        ("0", "Select"),
+        ("MEETINGS", "MEETINGS"),
+        ("PARTIES", "PARTIES"),
+        ("TUTORIALS", "TUTORIALS"),
+        ("SHOWCASES", "SHOWCASES"),
+
+    )
+
+
+    CLUB_CHOICE = (
+        ("0", "Astronomy CLUB"),
+        ("Self", "Self"),
+
+    )
+
+    title = models.CharField(max_length=20)
+    description = models.TextField()
+    event_type = models.CharField(max_length=40, choices=CAT_CHOICE, default="0")
+    sub_event = models.CharField(max_length=40, choices=EVENT_TYPE, default="0")
+    club=models.CharField(max_length=40,choices=CLUB_CHOICE, default='0')
+    target_batch = models.CharField(max_length=13, choices=BAT_CHOICE, default="Self")
+    target_branch = models.CharField(max_length=45, choices=DEP_CHOICE, default="Self")
+    date = models.DateField(default=timezone.localtime(timezone.now()))
+    deadline = models.DateField(default=timezone.localtime(timezone.now()))
+    time_from = models.TimeField(default=timezone.localtime(timezone.now()))
+    time_to = models.TimeField(default=timezone.localtime(timezone.now()))
+    remainder_date = models.DateField(default=timezone.localtime(timezone.now()))
+    remainder_time = models.TimeField(default=timezone.localtime(timezone.now()))
+    remainder = models.CharField(max_length=12, choices=REM_CHOICE, default="None")
+    author = models.ForeignKey(User, on_delete=models.CASCADE, null=True)
+
+    def __str__(self):
+        return self.title
+
+    def get_absolute_url(self):
+        return reverse('tasks-detail', kwargs={"pk": self.pk})
+
+
+class CACLUB(models.Model):
+    CAT_CHOICE = (
+        ("0", "CLUB RELATED ACTIVITIES"),
+
+    )
+    EVENT_TYPE = (
+        ("0", "Select"),
+        ("MEETINGS", "MEETINGS"),
+        ("PARTIES", "PARTIES"),
+        ("TUTORIALS", "TUTORIALS"),
+        ("SHOWCASES", "SHOWCASES"),
+
+    )
+
+
+    CLUB_CHOICE = (
+        ("0", "Consulting and Analytics Club"),
+        ("Self", "Self"),
+
+    )
+
+    title = models.CharField(max_length=20)
+    description = models.TextField()
+    event_type = models.CharField(max_length=40, choices=CAT_CHOICE, default="0")
+    sub_event = models.CharField(max_length=40, choices=EVENT_TYPE, default="0")
+    club=models.CharField(max_length=40,choices=CLUB_CHOICE, default='0')
+    target_batch = models.CharField(max_length=13, choices=BAT_CHOICE, default="Self")
+    target_branch = models.CharField(max_length=45, choices=DEP_CHOICE, default="Self")
+    date = models.DateField(default=timezone.localtime(timezone.now()))
+    deadline = models.DateField(default=timezone.localtime(timezone.now()))
+    time_from = models.TimeField(default=timezone.localtime(timezone.now()))
+    time_to = models.TimeField(default=timezone.localtime(timezone.now()))
+    remainder_date = models.DateField(default=timezone.localtime(timezone.now()))
+    remainder_time = models.TimeField(default=timezone.localtime(timezone.now()))
+    remainder = models.CharField(max_length=12, choices=REM_CHOICE, default="None")
+    author = models.ForeignKey(User, on_delete=models.CASCADE, null=True)
+
+    def __str__(self):
+        return self.title
+
+    def get_absolute_url(self):
+        return reverse('tasks-detail', kwargs={"pk": self.pk})
+
+
+class EECLUB(models.Model):
+    CAT_CHOICE = (
+        ("0", "CLUB RELATED ACTIVITIES"),
+
+    )
+    EVENT_TYPE = (
+        ("0", "Select"),
+        ("MEETINGS", "MEETINGS"),
+        ("PARTIES", "PARTIES"),
+        ("TUTORIALS", "TUTORIALS"),
+        ("SHOWCASES", "SHOWCASES"),
+
+    )
+
+
+    CLUB_CHOICE = (
+        ("0", "Electronics Club"),
+        ("Self", "Self"),
+
+    )
+
+    title = models.CharField(max_length=20)
+    description = models.TextField()
+    event_type = models.CharField(max_length=40, choices=CAT_CHOICE, default="0")
+    sub_event = models.CharField(max_length=40, choices=EVENT_TYPE, default="0")
+    club=models.CharField(max_length=40,choices=CLUB_CHOICE, default='0')
+    target_batch = models.CharField(max_length=13, choices=BAT_CHOICE, default="Self")
+    target_branch = models.CharField(max_length=45, choices=DEP_CHOICE, default="Self")
+    date = models.DateField(default=timezone.localtime(timezone.now()))
+    deadline = models.DateField(default=timezone.localtime(timezone.now()))
+    time_from = models.TimeField(default=timezone.localtime(timezone.now()))
+    time_to = models.TimeField(default=timezone.now())
+    remainder_date = models.DateField(default=timezone.localtime(timezone.now()))
+    remainder_time = models.TimeField(default=timezone.localtime(timezone.now()))
+    remainder = models.CharField(max_length=12, choices=REM_CHOICE, default="None")
+    author = models.ForeignKey(User, on_delete=models.CASCADE, null=True)
+
+    def __str__(self):
+        return self.title
+
+    def get_absolute_url(self):
+        return reverse('tasks-detail', kwargs={"pk": self.pk})
+
+
+class PRAKRITICLUB(models.Model):
+    CAT_CHOICE = (
+        ("0", "CLUB RELATED ACTIVITIES"),
+
+    )
+    EVENT_TYPE = (
+        ("0", "Select"),
+        ("MEETINGS", "MEETINGS"),
+        ("PARTIES", "PARTIES"),
+        ("TUTORIALS", "TUTORIALS"),
+        ("SHOWCASES", "SHOWCASES"),
+
+    )
+
+    CLUB_CHOICE = (
+        ("0", "Prakriti Club"),
+        ("Self", "Self"),
+
+    )
+
+    title = models.CharField(max_length=20)
+    description = models.TextField()
+    event_type = models.CharField(max_length=40, choices=CAT_CHOICE, default="0")
+    sub_event = models.CharField(max_length=40, choices=EVENT_TYPE, default="0")
+    club = models.CharField(max_length=40, choices=CLUB_CHOICE, default='0')
+    target_batch = models.CharField(max_length=13, choices=BAT_CHOICE, default="Self")
+    target_branch = models.CharField(max_length=45, choices=DEP_CHOICE, default="Self")
+    date = models.DateField(default=timezone.localtime(timezone.now()))
+    deadline = models.DateField(default=timezone.localtime(timezone.now()))
+    time_from = models.TimeField(default=timezone.localtime(timezone.now()))
+    time_to = models.TimeField(default=timezone.localtime(timezone.now()))
+    remainder_date = models.DateField(default=timezone.localtime(timezone.now()))
+    remainder_time = models.TimeField(default=timezone.localtime(timezone.now()))
+    remainder = models.CharField(max_length=12, choices=REM_CHOICE, default="None")
+    author = models.ForeignKey(User, on_delete=models.CASCADE, null=True)
+
+    def __str__(self):
+        return self.title
+
+    def get_absolute_url(self):
+        return reverse('tasks-detail', kwargs={"pk": self.pk})
+
+
+
+class FNCCLUB(models.Model):
+    CAT_CHOICE = (
+        ("0", "CLUB RELATED ACTIVITIES"),
+
+    )
+    EVENT_TYPE = (
+        ("0", "Select"),
+        ("MEETINGS", "MEETINGS"),
+        ("PARTIES", "PARTIES"),
+        ("TUTORIALS", "TUTORIALS"),
+        ("SHOWCASES", "SHOWCASES"),
+
+    )
+
+    CLUB_CHOICE = (
+        ("0", "Finance and Economics club"),
+        ("Self", "Self"),
+
+    )
+
+    title = models.CharField(max_length=20)
+    description = models.TextField()
+    event_type = models.CharField(max_length=40, choices=CAT_CHOICE, default="0")
+    sub_event = models.CharField(max_length=40, choices=EVENT_TYPE, default="0")
+    club = models.CharField(max_length=40, choices=CLUB_CHOICE, default='0')
+    target_batch = models.CharField(max_length=13, choices=BAT_CHOICE, default="Self")
+    target_branch = models.CharField(max_length=45, choices=DEP_CHOICE, default="Self")
+    date = models.DateField(default=timezone.localtime(timezone.now()))
+    deadline = models.DateField(default=timezone.localtime(timezone.now()))
+    time_from = models.TimeField(default=timezone.localtime(timezone.now()))
+    time_to = models.TimeField(default=timezone.localtime(timezone.now()))
+    remainder_date = models.DateField(default=timezone.localtime(timezone.now()))
+    remainder_time = models.TimeField(default=timezone.localtime(timezone.now()))
+    remainder = models.CharField(max_length=12, choices=REM_CHOICE, default="None")
+    author = models.ForeignKey(User, on_delete=models.CASCADE, null=True)
+
+    def __str__(self):
+        return self.title
+
+    def get_absolute_url(self):
+        return reverse('tasks-detail', kwargs={"pk": self.pk})
+
+
+class ROBOTICSCLUB(models.Model):
+    CAT_CHOICE = (
+        ("0", "CLUB RELATED ACTIVITIES"),
+
+    )
+    EVENT_TYPE = (
+        ("0", "Select"),
+        ("MEETINGS", "MEETINGS"),
+        ("PARTIES", "PARTIES"),
+        ("TUTORIALS", "TUTORIALS"),
+        ("SHOWCASES", "SHOWCASES"),
+
+    )
+
+    CLUB_CHOICE = (
+        ("0", "Robotics Club"),
+        ("Self", "Self"),
+
+    )
+
+    title = models.CharField(max_length=20)
+    description = models.TextField()
+    event_type = models.CharField(max_length=40, choices=CAT_CHOICE, default="0")
+    sub_event = models.CharField(max_length=40, choices=EVENT_TYPE, default="0")
+    club = models.CharField(max_length=40, choices=CLUB_CHOICE, default='0')
+    target_batch = models.CharField(max_length=13, choices=BAT_CHOICE, default="Self")
+    target_branch = models.CharField(max_length=45, choices=DEP_CHOICE, default="Self")
+    date = models.DateField(default=timezone.localtime(timezone.now()))
+    deadline = models.DateField(default=timezone.localtime(timezone.now()))
+    time_from = models.TimeField(default=timezone.localtime(timezone.now()))
+    time_to = models.TimeField(default=timezone.localtime(timezone.now()))
+    remainder_date = models.DateField(default=timezone.localtime(timezone.now()))
+    remainder_time = models.TimeField(default=timezone.localtime(timezone.now()))
+    remainder = models.CharField(max_length=12, choices=REM_CHOICE, default="None")
+    author = models.ForeignKey(User, on_delete=models.CASCADE, null=True)
+
+    def __str__(self):
+        return self.title
+
+    def get_absolute_url(self):
+        return reverse('tasks-detail', kwargs={"pk": self.pk})
+
+
+class EDCLUB(models.Model):
+    CAT_CHOICE = (
+        ("0", "CLUB RELATED ACTIVITIES"),
+
+    )
+    EVENT_TYPE = (
+        ("0", "Select"),
+        ("MEETINGS", "MEETINGS"),
+        ("PARTIES", "PARTIES"),
+        ("TUTORIALS", "TUTORIALS"),
+        ("SHOWCASES", "SHOWCASES"),
+
+    )
+
+    CLUB_CHOICE = (
+        ("0", "Entrepreneurial Development Cell"),
+        ("Self", "Self"),
+
+    )
+
+    title = models.CharField(max_length=20)
+    description = models.TextField()
+    event_type = models.CharField(max_length=40, choices=CAT_CHOICE, default="0")
+    sub_event = models.CharField(max_length=40, choices=EVENT_TYPE, default="0")
+    club = models.CharField(max_length=40, choices=CLUB_CHOICE, default='0')
+    target_batch = models.CharField(max_length=13, choices=BAT_CHOICE, default="Self")
+    target_branch = models.CharField(max_length=45, choices=DEP_CHOICE, default="Self")
+    date = models.DateField(default=timezone.localtime(timezone.now()))
+    deadline = models.DateField(default=timezone.localtime(timezone.now()))
+    time_from = models.TimeField(default=timezone.localtime(timezone.now()))
+    time_to = models.TimeField(default=timezone.localtime(timezone.now()))
+    remainder_date = models.DateField(default=timezone.localtime(timezone.now()))
+    remainder_time = models.TimeField(default=timezone.localtime(timezone.now()))
+    remainder = models.CharField(max_length=12, choices=REM_CHOICE, default="None")
+    author = models.ForeignKey(User, on_delete=models.CASCADE, null=True)
+
+    def __str__(self):
+        return self.title
+
+    def get_absolute_url(self):
+        return reverse('tasks-detail', kwargs={"pk": self.pk})
+
+
+
+class UGCLUB(models.Model):
+    CAT_CHOICE = (
+        ("0", "CLUB RELATED ACTIVITIES"),
+
+    )
+    EVENT_TYPE = (
+        ("0", "Select"),
+        ("MEETINGS", "MEETINGS"),
+        ("PARTIES", "PARTIES"),
+        ("TUTORIALS", "TUTORIALS"),
+        ("SHOWCASES", "SHOWCASES"),
+
+    )
+
+    CLUB_CHOICE = (
+        ("0", "Udgam - IITG Entrepreneurship Summit"),
+        ("Self", "Self"),
+
+    )
+
+    title = models.CharField(max_length=20)
+    description = models.TextField()
+    event_type = models.CharField(max_length=40, choices=CAT_CHOICE, default="0")
+    sub_event = models.CharField(max_length=40, choices=EVENT_TYPE, default="0")
+    club = models.CharField(max_length=40, choices=CLUB_CHOICE, default='0')
+    target_batch = models.CharField(max_length=13, choices=BAT_CHOICE, default="Self")
+    target_branch = models.CharField(max_length=45, choices=DEP_CHOICE, default="Self")
+    date = models.DateField(default=timezone.localtime(timezone.now()))
+    deadline = models.DateField(default=timezone.localtime(timezone.now()))
+    time_from = models.TimeField(default=timezone.localtime(timezone.now()))
+    time_to = models.TimeField(default=timezone.localtime(timezone.now()))
+    remainder_date = models.DateField(default=timezone.localtime(timezone.now()))
+    remainder_time = models.TimeField(default=timezone.localtime(timezone.now()))
+    remainder = models.CharField(max_length=12, choices=REM_CHOICE, default="None")
+    author = models.ForeignKey(User, on_delete=models.CASCADE, null=True)
+
+    def __str__(self):
+        return self.title
+
+    def get_absolute_url(self):
+        return reverse('tasks-detail', kwargs={"pk": self.pk})
+

@@ -1,31 +1,16 @@
-from django.http import JsonResponse
-from django.shortcuts import render
-from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
-from django.template.defaulttags import csrf_token
-from django.views.generic import ListView, DetailView, CreateView, UpdateView, DeleteView
-from .models import Task
-# from .serializer import TaskSerializer
-import io
-from rest_framework.parsers import JSONParser
-# from .serializer import TaskDSerializer
-from rest_framework.renderers import JSONRenderer
-from django.http import HttpResponse
-from django.views.decorators.csrf import csrf_exempt
-from rest_framework.generics import GenericAPIView
-from rest_framework.mixins import ListModelMixin
-from rest_framework.mixins import RetrieveModelMixin
-from rest_framework.mixins import CreateModelMixin
 
-from django.contrib.auth.decorators import login_required
 from django.shortcuts import render
 from django.contrib.auth.mixins import LoginRequiredMixin,UserPassesTestMixin
 from django.views.generic import ListView,DetailView,CreateView,UpdateView,DeleteView
-from .models import Task
-from .models import BT,CH,CL,CE,CSE,DES,ECE,EEE,MA,ME,PH
+from .models import Task, AEROCLUB, ASTROCLUB, CACLUB, EECLUB, PRAKRITICLUB, FNCCLUB, ROBOTICSCLUB, EDCLUB, UGCLUB
+from .models import BT,CH,CL,CE,CSE,DES,ECE,EEE,MA,ME,PH,CODINGCLUB,SWC
 from django.http import HttpResponse, JsonResponse
 from rest_framework.parsers import JSONParser
 from .aserializer import TaskSerializer
-from .serializer import BTSerializer,CHSerializer,CLSerializer,CESerializer,CSESerializer,DESSerializer,ECESerializer,EEESerializer,MASerializer,MESerializer,PHSerializer
+from .serializer import BTSerializer, CHSerializer, CLSerializer, CESerializer, CSESerializer, DESSerializer, \
+    ECESerializer, EEESerializer, MASerializer, MESerializer, PHSerializer, CODINGCLUBSerializer, SWCSerializer, \
+    AEROCLUBSerializer, ASTROCLUBSerializer, CACLUBSerializer, EECLUBSerializer, PRAKRITICLUBSerializer, \
+    FNCCLUBSerializer, ROBOTICSCLUBSerializer, EDCLUBSerializer, UGCLUBSerializer
 from rest_framework.response import Response
 from rest_framework import status, permissions
 from rest_framework.views import APIView
@@ -409,9 +394,272 @@ class PHTaskCreateAPI(generics.GenericAPIView, mixins.CreateModelMixin):
 
 
 
+class SWCTaskListAPI(generics.ListAPIView):
+    serializer_class = SWCSerializer
+    permission_class = (permissions.IsAuthenticatedOrReadOnly,)
+    queryset = SWC.objects.all()
+    filter_backends = [SearchFilter, OrderingFilter]
+    search_fields = ('title', 'description', 'author__name')
+
+
+class SWCTaskDetailAPI(generics.RetrieveUpdateDestroyAPIView):
+    serializer_class = SWCSerializer
+    queryset = SWC.objects.all()
+    permission_class = (permissions.IsAuthenticatedOrReadOnly,)
+
+
+class SWCTaskCreateAPI(generics.GenericAPIView, mixins.CreateModelMixin):
+    serializer_class = SWCSerializer
+    queryset = SWC.objects.all()
+    permission_class = (permissions.IsAuthenticatedOrReadOnly,)
+
+    def post(self, request):
+        return self.create(request)
+
+
+
+
+
+class CODINGCLUBTaskListAPI(generics.ListAPIView):
+    serializer_class = CODINGCLUBSerializer
+    permission_class = (permissions.IsAuthenticatedOrReadOnly,)
+    queryset = CODINGCLUB.objects.all()
+    filter_backends = [SearchFilter, OrderingFilter]
+    search_fields = ('title', 'description', 'author__name')
+
+
+class CODINGCLUBTaskDetailAPI(generics.RetrieveUpdateDestroyAPIView):
+    serializer_class = CODINGCLUBSerializer
+    queryset = CODINGCLUB.objects.all()
+    permission_class = (permissions.IsAuthenticatedOrReadOnly,)
+
+
+class CODINGCLUBTaskCreateAPI(generics.GenericAPIView, mixins.CreateModelMixin):
+    serializer_class = CODINGCLUBSerializer
+    queryset = CODINGCLUB.objects.all()
+    permission_class = (permissions.IsAuthenticatedOrReadOnly,)
+
+    def post(self, request):
+        return self.create(request)
+
+
+
+class AEROCLUBTaskListAPI(generics.ListAPIView):
+    serializer_class = AEROCLUBSerializer
+    permission_class = (permissions.IsAuthenticatedOrReadOnly,)
+    queryset = AEROCLUB.objects.all()
+    filter_backends = [SearchFilter, OrderingFilter]
+    search_fields = ('title', 'description', 'author__name')
+
+
+class AEROCLUBTaskDetailAPI(generics.RetrieveUpdateDestroyAPIView):
+    serializer_class = AEROCLUBSerializer
+    queryset = AEROCLUB.objects.all()
+    permission_class = (permissions.IsAuthenticatedOrReadOnly,)
+
+
+class AEROCLUBTaskCreateAPI(generics.GenericAPIView, mixins.CreateModelMixin):
+    serializer_class = AEROCLUBSerializer
+    queryset = AEROCLUB.objects.all()
+    permission_class = (permissions.IsAuthenticatedOrReadOnly,)
+
+    def post(self, request):
+        return self.create(request)
+
+
+
+class ASTROCLUBTaskListAPI(generics.ListAPIView):
+    serializer_class = ASTROCLUBSerializer
+    permission_class = (permissions.IsAuthenticatedOrReadOnly,)
+    queryset = ASTROCLUB.objects.all()
+    filter_backends = [SearchFilter, OrderingFilter]
+    search_fields = ('title', 'description', 'author__name')
+
+
+class ASTROCLUBTaskDetailAPI(generics.RetrieveUpdateDestroyAPIView):
+    serializer_class = ASTROCLUBSerializer
+    queryset = ASTROCLUB.objects.all()
+    permission_class = (permissions.IsAuthenticatedOrReadOnly,)
+
+
+class ASTROCLUBTaskCreateAPI(generics.GenericAPIView, mixins.CreateModelMixin):
+    serializer_class = ASTROCLUBSerializer
+    queryset = ASTROCLUB.objects.all()
+    permission_class = (permissions.IsAuthenticatedOrReadOnly,)
+
+    def post(self, request):
+        return self.create(request)
+
+class CACLUBTaskListAPI(generics.ListAPIView):
+    serializer_class = CACLUBSerializer
+    permission_class = (permissions.IsAuthenticatedOrReadOnly,)
+    queryset = CACLUB.objects.all()
+    filter_backends = [SearchFilter, OrderingFilter]
+    search_fields = ('title', 'description', 'author__name')
+
+
+class CACLUBTaskDetailAPI(generics.RetrieveUpdateDestroyAPIView):
+    serializer_class = CACLUBSerializer
+    queryset = CACLUB.objects.all()
+    permission_class = (permissions.IsAuthenticatedOrReadOnly,)
+
+
+class CACLUBTaskCreateAPI(generics.GenericAPIView, mixins.CreateModelMixin):
+    serializer_class = CACLUBSerializer
+    queryset = CACLUB.objects.all()
+    permission_class = (permissions.IsAuthenticatedOrReadOnly,)
+
+    def post(self, request):
+        return self.create(request)
+
+class EECLUBTaskListAPI(generics.ListAPIView):
+    serializer_class = EECLUBSerializer
+    permission_class = (permissions.IsAuthenticatedOrReadOnly,)
+    queryset = EECLUB.objects.all()
+    filter_backends = [SearchFilter, OrderingFilter]
+    search_fields = ('title', 'description', 'author__name')
+
+
+class EECLUBTaskDetailAPI(generics.RetrieveUpdateDestroyAPIView):
+    serializer_class = EECLUBSerializer
+    queryset = EECLUB.objects.all()
+    permission_class = (permissions.IsAuthenticatedOrReadOnly,)
+
+
+class EECLUBTaskCreateAPI(generics.GenericAPIView, mixins.CreateModelMixin):
+    serializer_class = EECLUBSerializer
+    queryset = EECLUB.objects.all()
+    permission_class = (permissions.IsAuthenticatedOrReadOnly,)
+
+    def post(self, request):
+        return self.create(request)
+
+class PRAKRITICLUBTaskListAPI(generics.ListAPIView):
+    serializer_class = PRAKRITICLUBSerializer
+    permission_class = (permissions.IsAuthenticatedOrReadOnly,)
+    queryset = PRAKRITICLUB.objects.all()
+    filter_backends = [SearchFilter, OrderingFilter]
+    search_fields = ('title', 'description', 'author__name')
+
+
+class PRAKRITICLUBTaskDetailAPI(generics.RetrieveUpdateDestroyAPIView):
+    serializer_class = PRAKRITICLUBSerializer
+    queryset = PRAKRITICLUB.objects.all()
+    permission_class = (permissions.IsAuthenticatedOrReadOnly,)
+
+
+class PRAKRITICLUBTaskCreateAPI(generics.GenericAPIView, mixins.CreateModelMixin):
+    serializer_class = PRAKRITICLUBSerializer
+    queryset = PRAKRITICLUB.objects.all()
+    permission_class = (permissions.IsAuthenticatedOrReadOnly,)
+
+    def post(self, request):
+        return self.create(request)
+
+class FNCCLUBTaskListAPI(generics.ListAPIView):
+    serializer_class = FNCCLUBSerializer
+    permission_class = (permissions.IsAuthenticatedOrReadOnly,)
+    queryset = FNCCLUB.objects.all()
+    filter_backends = [SearchFilter, OrderingFilter]
+    search_fields = ('title', 'description', 'author__name')
+
+
+class FNCCLUBTaskDetailAPI(generics.RetrieveUpdateDestroyAPIView):
+    serializer_class = FNCCLUBSerializer
+    queryset = FNCCLUB.objects.all()
+    permission_class = (permissions.IsAuthenticatedOrReadOnly,)
+
+
+class FNCCLUBTaskCreateAPI(generics.GenericAPIView, mixins.CreateModelMixin):
+    serializer_class = FNCCLUBSerializer
+    queryset = FNCCLUB.objects.all()
+    permission_class = (permissions.IsAuthenticatedOrReadOnly,)
+
+    def post(self, request):
+        return self.create(request)
+
+
+
+class ROBOTICSCLUBTaskListAPI(generics.ListAPIView):
+    serializer_class = ROBOTICSCLUBSerializer
+    permission_class = (permissions.IsAuthenticatedOrReadOnly,)
+    queryset = ROBOTICSCLUB.objects.all()
+    filter_backends = [SearchFilter, OrderingFilter]
+    search_fields = ('title', 'description', 'author__name')
+
+
+class ROBOTICSCLUBTaskDetailAPI(generics.RetrieveUpdateDestroyAPIView):
+    serializer_class = ROBOTICSCLUBSerializer
+    queryset = ROBOTICSCLUB.objects.all()
+    permission_class = (permissions.IsAuthenticatedOrReadOnly,)
+
+
+class ROBOTICSCLUBTaskCreateAPI(generics.GenericAPIView, mixins.CreateModelMixin):
+    serializer_class = ROBOTICSCLUBSerializer
+    queryset = ROBOTICSCLUB.objects.all()
+    permission_class = (permissions.IsAuthenticatedOrReadOnly,)
+
+    def post(self, request):
+        return self.create(request)
+
+
+class EDCLUBTaskListAPI(generics.ListAPIView):
+    serializer_class = EDCLUBSerializer
+    permission_class = (permissions.IsAuthenticatedOrReadOnly,)
+    queryset = EDCLUB.objects.all()
+    filter_backends = [SearchFilter, OrderingFilter]
+    search_fields = ('title', 'description', 'author__name')
+
+
+class EDCLUBTaskDetailAPI(generics.RetrieveUpdateDestroyAPIView):
+    serializer_class = EDCLUBSerializer
+    queryset = EDCLUB.objects.all()
+    permission_class = (permissions.IsAuthenticatedOrReadOnly,)
+
+
+class EDCLUBTaskCreateAPI(generics.GenericAPIView, mixins.CreateModelMixin):
+    serializer_class = EDCLUBSerializer
+    queryset = EDCLUB.objects.all()
+    permission_class = (permissions.IsAuthenticatedOrReadOnly,)
+
+    def post(self, request):
+        return self.create(request)
+
+
+class UGCLUBTaskListAPI(generics.ListAPIView):
+    serializer_class = UGCLUBSerializer
+    permission_class = (permissions.IsAuthenticatedOrReadOnly,)
+    queryset = UGCLUB.objects.all()
+    filter_backends = [SearchFilter, OrderingFilter]
+    search_fields = ('title', 'description', 'author__name')
+
+
+class UGCLUBTaskDetailAPI(generics.RetrieveUpdateDestroyAPIView):
+    serializer_class = UGCLUBSerializer
+    queryset = UGCLUB.objects.all()
+    permission_class = (permissions.IsAuthenticatedOrReadOnly,)
+
+
+class UGCLUBTaskCreateAPI(generics.GenericAPIView, mixins.CreateModelMixin):
+    serializer_class = UGCLUBSerializer
+    queryset = UGCLUB.objects.all()
+    permission_class = (permissions.IsAuthenticatedOrReadOnly,)
+
+    def post(self, request):
+        return self.create(request)
+
 def task(request):
     return render(request,'tasks/TaskView.html')
 
 def acad(request):
     return render(request,'tasks/branchAC.html')
+
+def club(request):
+    return render(request,'tasks/clubs.html')
+
+
+
+
+
+
 

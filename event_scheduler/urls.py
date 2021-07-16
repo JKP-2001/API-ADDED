@@ -77,4 +77,49 @@ urlpatterns = [
     path('PHAPI/<int:pk>/', views.PHTaskDetailAPI.as_view(), name='tasks-detail'),
     path('PHAPI/new/', views.PHTaskCreateAPI.as_view(), name='tasks-create'),
 
+
+    path('SWCAPI/', views.SWCTaskListAPI.as_view(), name='tasks-list'),
+    path('SWCAPI/<int:pk>/', views.SWCTaskDetailAPI.as_view(), name='tasks-detail'),
+    path('SWCAPI/new/', views.SWCTaskCreateAPI.as_view(), name='tasks-create'),
+
+    path('CDCLUBAPI/', views.CODINGCLUBTaskListAPI.as_view(), name='tasks-list'),
+    path('CDCLUBAPI/<int:pk>/', views.CODINGCLUBTaskDetailAPI.as_view(), name='tasks-detail'),
+    path('CDCLUBAPI/new/', views.CODINGCLUBTaskCreateAPI.as_view(), name='tasks-create'),
+
+    path('AEROCLUBAPI/', views.AEROCLUBTaskListAPI.as_view(), name='tasks-list'),
+    path('AEROCLUBAPI/<int:pk>/', views.AEROCLUBTaskDetailAPI.as_view(), name='tasks-detail'),
+    path('AEROCLUBAPI/new/', views.AEROCLUBTaskCreateAPI.as_view(), name='tasks-create'),
+
+    path('ASTROCLUBAPI/', views.ASTROCLUBTaskListAPI.as_view(), name='tasks-list'),
+    path('ASTROCLUBAPI/<int:pk>/', views.ASTROCLUBTaskDetailAPI.as_view(), name='tasks-detail'),
+    path('ASTROCLUBAPI/new/', views.ASTROCLUBTaskCreateAPI.as_view(), name='tasks-create'),
+
+    path('CACLUBAPI/', views.CACLUBTaskListAPI.as_view(), name='tasks-list'),
+    path('CACLUBAPI/<int:pk>/', views.CACLUBTaskDetailAPI.as_view(), name='tasks-detail'),
+    path('CACLUBAPI/new/', views.CACLUBTaskCreateAPI.as_view(), name='tasks-create'),
+
+    path('EECLUBAPI/', views.EECLUBTaskListAPI.as_view(), name='tasks-list'),
+    path('EECLUBAPI/<int:pk>/', views.EECLUBTaskDetailAPI.as_view(), name='tasks-detail'),
+    path('EECLUBAPI/new/', views.EECLUBTaskCreateAPI.as_view(), name='tasks-create'),
+
+    path('PRAKRITICLUBAPI/', views.PRAKRITICLUBTaskListAPI.as_view(), name='tasks-list'),
+    path('PRAKRITICLUBAPI/<int:pk>/', views.PRAKRITICLUBTaskDetailAPI.as_view(), name='tasks-detail'),
+    path('PRAKRITICLUBAPI/new/', views.PRAKRITICLUBTaskCreateAPI.as_view(), name='tasks-create'),
+
+    path('FNCCLUBAPI/', views.FNCCLUBTaskListAPI.as_view(), name='tasks-list'),
+    path('FNCCLUBAPI/<int:pk>/', views.FNCCLUBTaskDetailAPI.as_view(), name='tasks-detail'),
+    path('FNCCLUBAPI/new/', views.FNCCLUBTaskCreateAPI.as_view(), name='tasks-create'),
+
+
+    path('ROBOTICSCLUBAPI/', views.ROBOTICSCLUBTaskListAPI.as_view(), name='tasks-list'),
+    path('ROBOTICSCLUBAPI/<int:pk>/', views.ROBOTICSCLUBTaskDetailAPI.as_view(), name='tasks-detail'),
+    path('ROBOTICSCLUBAPI/new/', views.ROBOTICSCLUBTaskCreateAPI.as_view(), name='tasks-create'),
+
+    path('EDCLUBAPI/', views.EDCLUBTaskListAPI.as_view(), name='tasks-list'),
+    path('EDCLUBAPI/<int:pk>/', views.EDCLUBTaskDetailAPI.as_view(), name='tasks-detail'),
+    path('EDCLUBAPI/new/', views.EDCLUBTaskCreateAPI.as_view(), name='tasks-create'),
+
+    path('UGCLUBAPI/', views.UGCLUBTaskListAPI.as_view(), name='tasks-list'),
+    path('UGCLUBAPI/<int:pk>/', views.UGCLUBTaskDetailAPI.as_view(), name='tasks-detail'),
+    path('UGCLUBAPI/new/', views.UGCLUBTaskCreateAPI.as_view(), name='tasks-create'),
 ]

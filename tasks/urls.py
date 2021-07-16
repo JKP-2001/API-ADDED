@@ -10,5 +10,7 @@ urlpatterns = [
     path('task/new/',TaskCreateView.as_view(),name='tasks-create'),
     path('task/',views.task,name='TASK'),
     path('task/branch/',views.acad,name='acad'),
+    path('task/club/', views.club, name='club'),
+
 
 ]
